@@ -36,7 +36,7 @@ defineEmits(['toggle-theme'])
 
 <style scoped>
 .header {
-  height: 80px;
+  height: 50px;
   background-color: var(--background-header);
   display: flex;
   align-items: center;
@@ -60,7 +60,7 @@ defineEmits(['toggle-theme'])
 }
 
 .logo-img {
-  height: 50px;
+  height: 40px;
   width: auto;
 }
 
@@ -129,7 +129,7 @@ defineEmits(['toggle-theme'])
   }
   
   .logo-img {
-    height: 40px;
+    height: 30px;
   }
 }
 
