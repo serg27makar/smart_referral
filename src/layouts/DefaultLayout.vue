@@ -1,5 +1,6 @@
 <template>
   <div class="default-layout">
+    <LoginGreeting v-if="showGreeting" @animation-end="handleGreetingEnd" />
     <TheHeader :is-dark="isDark" @toggle-theme="$emit('toggle-theme')" />
     <main class="content">
       <router-view v-slot="{ Component }">
@@ -12,13 +13,28 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue'
 import TheHeader from '@/components/TheHeader.vue'
+import LoginGreeting from '@/components/LoginGreeting.vue'
 
 defineProps({
   isDark: Boolean
 })
 
 defineEmits(['toggle-theme'])
+
+const showGreeting = ref(false)
+
+onMounted(() => {
+  if (sessionStorage.getItem('showGreeting') === 'true') {
+    showGreeting.value = true
+  }
+})
+
+const handleGreetingEnd = () => {
+  showGreeting.value = false
+  sessionStorage.removeItem('showGreeting')
+}
 </script>
 
 <style scoped>
