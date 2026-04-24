@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import LoginView from '@/views/LoginView.vue'
-import EmptyView from '@/views/EmptyView.vue'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import AuthLayout from '@/layouts/AuthLayout.vue'
+import NotSure from "@/views/NotSure.vue";
+import WalkThrough from "@/views/WalkThrough.vue";
+import KnowWhatNeed from "@/views/KnowWhatNeed.vue";
 
 const routes = [
   {
@@ -18,17 +20,17 @@ const routes = [
       {
         path: 'not-sure',
         name: 'not-sure',
-        component: EmptyView
+        component: NotSure
       },
       {
         path: 'walk-through',
         name: 'walk-through',
-        component: EmptyView
+        component: WalkThrough
       },
       {
         path: 'know-what-i-need',
         name: 'know-what-i-need',
-        component: EmptyView
+        component: KnowWhatNeed
       }
     ]
   },
@@ -54,7 +56,6 @@ const router = createRouter({
   routes
 })
 
-// Навигационный гард для имитации авторизации
 router.beforeEach((to, from, next) => {
   const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true'
   
