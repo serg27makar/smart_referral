@@ -102,6 +102,37 @@ defineEmits(['toggle-theme'])
   gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .header {
+    padding: 0 16px;
+  }
+
+  .header-center {
+    display: none;
+  }
+
+  .user-name {
+    display: none;
+  }
+
+  .user-profile {
+    padding: 4px;
+    background-color: transparent;
+  }
+
+  .header-right {
+    gap: 10px;
+  }
+  
+  .logo-text {
+    font-size: 14px;
+  }
+  
+  .logo-img {
+    height: 40px;
+  }
+}
+
 .user-profile {
   display: flex;
   align-items: center;

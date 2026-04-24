@@ -20,7 +20,7 @@ defineEmits(['click'])
 .base-card {
   background-color: var(--background-color);
   border-radius: var(--border-radius);
-  box-shadow: var(--box-shadow);
+  box-shadow: var(--card-shadow);
   transition: all var(--transition-speed);
   cursor: pointer;
   overflow: hidden;
@@ -30,17 +30,18 @@ defineEmits(['click'])
 
 .base-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--card-shadow-hover);
   background-color: var(--background-hover-color);
 }
 
 .base-card-body {
-  padding: 24px;
+  padding: 30px 24px;
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
   text-align: center;
+  gap: 12px;
 }
 
 .base-card-header, .base-card-footer {
