@@ -13,18 +13,17 @@
       <p class="page-subtitle">Fill in the details below – select services and pricing update live at the bottom.</p>
     </div>
 
-    <!-- Upload Section -->
     <ClaimUploadSection />
 
     <div class="section-title">SECTION 1 – CLAIM DETAILS</div>
 
-    <!-- Section 1 - Main Container -->
     <ClaimDetailsSection />
 
     <div class="section-title">SECTION 2 – SELECT SERVICES</div>
 
-    <!-- Section 2 - Services -->
     <ClaimServicesSection />
+
+    <ClaimEstimatedFooter />
   </div>
 </template>
 
@@ -33,6 +32,7 @@ import { useRouter } from 'vue-router'
 import ClaimUploadSection from '@/components/ClaimUploadSection.vue'
 import ClaimDetailsSection from '@/components/ClaimDetailsSection.vue'
 import ClaimServicesSection from '@/components/ClaimServicesSection.vue'
+import ClaimEstimatedFooter from '@/components/ClaimEstimatedFooter.vue'
 
 const router = useRouter()
 
@@ -46,6 +46,7 @@ const goBack = () => {
   max-width: 1000px;
   margin: 0 auto;
   padding: 40px 20px;
+  padding-bottom: 140px;
 }
 
 .back-button {
@@ -89,5 +90,11 @@ const goBack = () => {
   color: var(--text-color);
   margin: 40px 0 16px;
   letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+  .know-what-need {
+    padding-bottom: 170px;
+  }
 }
 </style>
