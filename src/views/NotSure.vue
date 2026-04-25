@@ -18,7 +18,9 @@
         <h1 class="step-title">Drop your claim files here</h1>
         <p class="step-subtitle">PDFs, emails, notes – anything you have. We’ll extract the claim details and build your investigation plan.</p>
       </div>
-      <FileUpload :showEmailPaste="false" @files-selected="handleFilesSelected" />
+      <BaseSection>
+        <FileUpload :showEmailPaste="false" @files-selected="handleFilesSelected" />
+      </BaseSection>
     </div>
 
     <div v-if="currentStep === 2" class="step-content">
@@ -27,19 +29,9 @@
         <p class="step-subtitle">Review the details we extracted. Correct anything that looks off.</p>
       </div>
       
-      <div class="extracted-details-grid">
-        <EditableField v-model="claimStore.claim.clientName" label="COMPANY NAME" />
-        <EditableField v-model="claimStore.claim.claimFileNumber" label="CLAIM / FILE NUMBER" />
-        <EditableField v-model="claimStore.claim.typeOfClaim" label="CLAIM TYPE" />
-        <EditableField v-model="claimStore.claim.claimant" label="CLAIMANT" />
-        <EditableField v-model="claimStore.claim.insured" label="INSURED (POLICY HOLDER)" />
-        <EditableField v-model="claimStore.claim.insuredRepresentative" label="INSURED REPRESENTATIVE" />
-        <EditableField v-model="claimStore.claim.claimHandler" label="CLAIM HANDLER" />
-        <EditableField v-model="claimStore.claim.dateOfInjury" label="DATE OF INSURY / LOSS" />
-        <EditableField v-model="claimStore.claim.descriptionOfInjury" label="DESCRIPTION OF INJURY / LOSS" />
-        <EditableField v-model="claimStore.claim.claimStage" label="LIFECYCLE STAGE" />
-        <EditableField v-model="claimStore.claim.redFlagsDetected" label="RED FLAGS DETECTED" />
-      </div>
+      <ExtractedDetailsSection />
+
+      <Jurisdiction />
     </div>
   </div>
 </template>
@@ -49,10 +41,11 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useClaimStore } from '@/stores/claim'
 import FileUpload from '@/components/FileUpload.vue'
-import EditableField from '@/components/EditableField.vue'
+import Jurisdiction from '@/components/Jurisdiction.vue'
+import ExtractedDetailsSection from '@/components/ExtractedDetailsSection.vue'
+import BaseSection from "@/components/BaseSection.vue";
 
 const router = useRouter()
-const claimStore = useClaimStore()
 const currentStep = ref(1)
 
 const goBack = () => {
@@ -71,7 +64,6 @@ const nextStep = () => {
 
 const handleFilesSelected = (files) => {
   console.log('Files received in NotSure.vue:', files)
-  // В будущем здесь будет логика обработки файлов/извлечения данных
   nextStep()
 }
 </script>
@@ -142,21 +134,5 @@ const handleFilesSelected = (files) => {
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
-}
-
-.extracted-details-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  background: var(--background-color);
-  padding: 40px;
-  border-radius: var(--border-radius);
-  margin-bottom: 40px;
-}
-
-@media (max-width: 600px) {
-  .extracted-details-grid {
-    padding: 20px;
-  }
 }
 </style>
