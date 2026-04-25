@@ -183,6 +183,13 @@ const claimStages = [
   margin-bottom: 32px;
 }
 
+@media (max-width: 600px) {
+  .overview-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
 .overview-field {
   display: flex;
   flex-direction: column;

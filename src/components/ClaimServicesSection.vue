@@ -163,11 +163,23 @@ const toggleService = (title) => {
   margin-bottom: 32px;
 }
 
+@media (max-width: 768px) {
+  .services-header {
+    text-align: center;
+  }
+}
+
 .services-title {
   font-size: 20px;
   font-weight: 700;
   color: var(--text-color);
   margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .services-title {
+    font-size: 18px;
+  }
 }
 
 .services-subtitle {

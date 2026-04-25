@@ -166,6 +166,14 @@ const removeService = (title) => {
   margin-bottom: 24px;
 }
 
+@media (max-width: 600px) {
+  .services-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
 .section-label {
   font-size: 14px;
   font-weight: 700;
@@ -202,6 +210,10 @@ const removeService = (title) => {
   display: flex;
   gap: 12px;
   align-items: flex-start;
+  padding: 16px;
+  background-color: #def6fd;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
 }
 
 .info-icon {
@@ -233,6 +245,26 @@ const removeService = (title) => {
   gap: 24px;
 }
 
+@media (max-width: 800px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card-title {
+    white-space: normal;
+    height: auto;
+    line-height: 1.3;
+    overflow: visible;
+    text-overflow: clip;
+  }
+
+  .card-description {
+    -webkit-line-clamp: unset;
+    height: auto;
+  }
+}
+
 .service-card {
   background: var(--background-color);
   border: 1px solid var(--border-color);
@@ -242,6 +274,9 @@ const removeService = (title) => {
   display: flex;
   flex-direction: column;
   transition: transform 0.2s, box-shadow 0.2s;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .service-card:hover {
@@ -278,8 +313,9 @@ const removeService = (title) => {
   overflow: hidden;
   text-overflow: ellipsis;
   height: 24px;
-  display: flex;
-  align-items: center;
+  display: block;
+  line-height: 24px;
+  min-width: 0;
 }
 
 .remove-btn {
@@ -317,6 +353,8 @@ const removeService = (title) => {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .recommended-toggle {

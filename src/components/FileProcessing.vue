@@ -108,6 +108,12 @@ onUnmounted(() => {
   color: var(--text-color);
 }
 
+@media (max-width: 768px) {
+  .processing-title {
+    font-size: 24px;
+  }
+}
+
 .files-list {
   max-width: 500px;
   margin: 0 auto 40px;
@@ -115,6 +121,13 @@ onUnmounted(() => {
   border-radius: var(--border-radius);
   border: 1px solid var(--border-color);
   overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  .files-list {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
 }
 
 .file-item {

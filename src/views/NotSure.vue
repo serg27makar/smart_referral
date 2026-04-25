@@ -58,6 +58,8 @@
       <CaseOverviewSection />
 
       <ServicesPlanSection />
+
+      <ConsiderAddingSection />
     </div>
   </div>
 </template>
@@ -75,6 +77,7 @@ import BaseButton from "@/components/BaseButton.vue";
 import FileProcessing from "@/components/FileProcessing.vue";
 import CaseOverviewSection from "@/components/CaseOverviewSection.vue";
 import ServicesPlanSection from "@/components/ServicesPlanSection.vue";
+import ConsiderAddingSection from "@/components/ConsiderAddingSection.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
@@ -106,11 +109,23 @@ const handleFilesSelected = (files) => {
   padding: 40px 20px;
 }
 
+@media (max-width: 768px) {
+  .not-sure-page {
+    padding: 24px 16px;
+  }
+}
+
 .top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 60px;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    margin-bottom: 32px;
+  }
 }
 
 .back-button {
@@ -159,12 +174,24 @@ const handleFilesSelected = (files) => {
   margin-bottom: 12px;
 }
 
+@media (max-width: 768px) {
+  .step-title {
+    font-size: 24px;
+  }
+}
+
 .step-subtitle {
   font-size: 16px;
   color: var(--secondary-color);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .step-subtitle {
+    font-size: 14px;
+  }
 }
 
 .build-btn button {

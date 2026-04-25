@@ -33,6 +33,16 @@ defineEmits(['update:modelValue'])
   white-space: nowrap;
 }
 
+@media (max-width: 600px) {
+  .base-radio-button {
+    padding: 6px 12px;
+    font-size: 13px;
+    white-space: normal;
+    text-align: center;
+    flex-grow: 1;
+  }
+}
+
 .base-radio-button:hover {
   border-color: var(--my-primary-color);
   background-color: var(--background-hover-color);

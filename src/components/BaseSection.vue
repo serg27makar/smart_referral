@@ -29,6 +29,13 @@ defineProps({
   transition: all var(--transition-speed);
 }
 
+@media (max-width: 768px) {
+  .base-section {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+}
+
 .section-label {
   display: flex;
   align-items: center;
