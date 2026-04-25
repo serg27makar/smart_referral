@@ -24,6 +24,10 @@
     </div>
 
     <div v-if="currentStep === 2" class="step-content">
+      <FileProcessing @complete="nextStep" />
+    </div>
+
+    <div v-if="currentStep === 3" class="step-content">
       <div class="step-header">
         <h1 class="step-title">Here’s what we found</h1>
         <p class="step-subtitle">Review the details we extracted. Correct anything that looks off.</p>
@@ -41,7 +45,20 @@
         :budgetEnabled="false"
       />
 
-      <BaseButton @click="nextStep">This looks right – Build My Plan</BaseButton>
+      <div class="build-btn">
+        <BaseButton @click="nextStep">This looks right – Build My Plan</BaseButton>
+      </div>
+    </div>
+
+    <div v-if="currentStep === 4" class="step-content">
+      <div class="step-header">
+        <h1 class="step-title">Your Plan is Ready</h1>
+        <p class="step-subtitle">We've built a custom investigation plan based on your documents.</p>
+      </div>
+      <!-- Шаг 4 будет реализован позже -->
+      <div style="text-align: center; margin-top: 40px;">
+        <BaseButton @click="router.push('/')">Finish</BaseButton>
+      </div>
     </div>
   </div>
 </template>
@@ -56,6 +73,7 @@ import BaseSection from "@/components/BaseSection.vue";
 import AdditionalDetails from "@/components/AdditionalDetails.vue";
 import ClaimServicesSection from "@/components/ClaimServicesSection.vue";
 import BaseButton from "@/components/BaseButton.vue";
+import FileProcessing from "@/components/FileProcessing.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
@@ -146,5 +164,9 @@ const handleFilesSelected = (files) => {
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.5;
+}
+
+.build-btn button {
+  width: 100%;
 }
 </style>
