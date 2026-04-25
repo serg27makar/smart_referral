@@ -29,8 +29,6 @@ export const useClaimStore = defineStore('claim', () => {
     claimStage: 'Step 1 New Claim',
     redFlags: ["Prior claims history", "Inconsistent statements"],
 
-    redFlagsDetected: '',
-
     services: [],
     budgetHours: 0,
     budget: 0.00,

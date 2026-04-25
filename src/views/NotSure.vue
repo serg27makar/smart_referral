@@ -57,7 +57,7 @@
       
       <CaseOverviewSection />
 
-
+      <ServicesPlanSection />
     </div>
   </div>
 </template>
@@ -74,6 +74,7 @@ import ClaimServicesSection from "@/components/ClaimServicesSection.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import FileProcessing from "@/components/FileProcessing.vue";
 import CaseOverviewSection from "@/components/CaseOverviewSection.vue";
+import ServicesPlanSection from "@/components/ServicesPlanSection.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
