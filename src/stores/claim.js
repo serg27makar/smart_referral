@@ -10,6 +10,7 @@ export const useClaimStore = defineStore('claim', () => {
     ccEmails: 'claims-notif@advantage.com, legal@advantage.com',
 
     claimFileNumber: 'CLM-2024-001',
+    claimType: 'Workers Comp',
     claimant: 'Jane Doe',
     insured: 'John Doe',
     claimHandler: 'Sarah Miller',
@@ -17,7 +18,6 @@ export const useClaimStore = defineStore('claim', () => {
     insuredContactInformation: 'jane.doe@example.com, +1 (555) 987-6543',
     isContactMyAccountManager: false,
     isPreferPhysicalMedia: false,
-
     typeOfClaim: 'Workers Comp',
 
     state: 'California',
@@ -28,6 +28,8 @@ export const useClaimStore = defineStore('claim', () => {
 
     claimStage: 'Step 1 New Claim',
     redFlags: [],
+
+    redFlagsDetected: '',
 
     services: [],
     budgetHours: 0,

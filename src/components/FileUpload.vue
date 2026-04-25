@@ -22,27 +22,44 @@
       <p class="upload-formats">PDF, PNG, JPG, DOC, DOCX, XLS, XLSX</p>
     </div>
     
-    <div class="email-paste">
+    <div v-if="showEmailPaste" class="email-paste">
       <span class="email-paste-text">Or paste email text directly</span>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {computed, ref} from 'vue'
 
 const isDragging = ref(false)
 const fileInput = ref(null)
+
+const props = defineProps({
+  showEmailPaste: {
+    type: Boolean,
+    default: true
+  }
+})
+
+const showEmailPaste = computed(() => props.showEmailPaste)
+
+const emit = defineEmits(['files-selected'])
 
 const handleDrop = (e) => {
   isDragging.value = false
   const files = e.dataTransfer.files
   console.log('Dropped files:', files)
+  if (files.length > 0) {
+    emit('files-selected', files)
+  }
 }
 
 const handleFileSelect = (e) => {
   const files = e.target.files
   console.log('Selected files:', files)
+  if (files.length > 0) {
+    emit('files-selected', files)
+  }
 }
 </script>
 
