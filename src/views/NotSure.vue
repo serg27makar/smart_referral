@@ -34,7 +34,14 @@
       <Jurisdiction />
 
       <AdditionalDetails />
+      
+      <ClaimServicesSection 
+        title="RECOMMENDED SERVICES" 
+        subtitle="Based on the extracted claim details. Click any tile to add or remove."
+        :budgetEnabled="false"
+      />
 
+      <BaseButton @click="nextStep">This looks right – Build My Plan</BaseButton>
     </div>
   </div>
 </template>
@@ -47,6 +54,8 @@ import Jurisdiction from '@/components/Jurisdiction.vue'
 import ExtractedDetailsSection from '@/components/ExtractedDetailsSection.vue'
 import BaseSection from "@/components/BaseSection.vue";
 import AdditionalDetails from "@/components/AdditionalDetails.vue";
+import ClaimServicesSection from "@/components/ClaimServicesSection.vue";
+import BaseButton from "@/components/BaseButton.vue";
 
 const router = useRouter()
 const currentStep = ref(1)

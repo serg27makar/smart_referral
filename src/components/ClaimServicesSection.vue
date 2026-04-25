@@ -1,8 +1,8 @@
 <template>
   <div class="services-section">
     <div class="services-header">
-      <h2 class="services-title">Choose the services for this investigation</h2>
-      <p class="services-subtitle">Grouped by category. Click and tile to add or remove it from your plan.</p>
+      <h2 class="services-title">{{ title }}</h2>
+      <p class="services-subtitle">{{ subtitle }}</p>
     </div>
 
     <div v-for="category in serviceCategories" :key="category.label" class="service-category">
@@ -32,7 +32,7 @@
       </div>
     </div>
 
-    <div class="budget-section">
+    <div v-if="budgetEnabled" class="budget-section">
       <div class="category-label">$ BUDGET & TIMELINE (OPTIONAL)</div>
       <div class="budget-grid">
         <BaseInput 
@@ -62,6 +62,21 @@ import BaseCard from '@/components/BaseCard.vue'
 import BaseInput from '@/components/BaseInput.vue'
 
 const claimStore = useClaimStore()
+
+defineProps({
+  title: {
+    type: String,
+    default: 'Choose the services for this investigation'
+  },
+  subtitle: {
+    type: String,
+    default: 'Grouped by category. Click and tile to add or remove it from your plan.'
+  },
+  budgetEnabled: {
+    type: Boolean,
+    default: true
+  }
+})
 
 const serviceCategories = [
   {
