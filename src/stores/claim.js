@@ -27,7 +27,7 @@ export const useClaimStore = defineStore('claim', () => {
     descriptionOfInjury: 'Back injury sustained while lifting heavy equipment at the warehouse.',
 
     claimStage: 'Step 1 New Claim',
-    redFlags: [],
+    redFlags: ["Prior claims history", "Inconsistent statements"],
 
     redFlagsDetected: '',
 

@@ -4,6 +4,7 @@
     class="base-radio-button"
     :class="{ active: modelValue === value }"
     @click="$emit('update:modelValue', value)"
+    :disabled="readOnly"
   >
     {{ label }}
   </button>
@@ -13,7 +14,8 @@
 defineProps({
   modelValue: [String, Number, Boolean],
   value: [String, Number, Boolean],
-  label: String
+  label: String,
+  readOnly: Boolean,
 })
 defineEmits(['update:modelValue'])
 </script>

@@ -52,13 +52,12 @@
 
     <div v-if="currentStep === 4" class="step-content">
       <div class="step-header">
-        <h1 class="step-title">Your Plan is Ready</h1>
-        <p class="step-subtitle">We've built a custom investigation plan based on your documents.</p>
+        <h1 class="step-title">Your Investigation Plan</h1>
       </div>
-      <!-- Шаг 4 будет реализован позже -->
-      <div style="text-align: center; margin-top: 40px;">
-        <BaseButton @click="router.push('/')">Finish</BaseButton>
-      </div>
+      
+      <CaseOverviewSection />
+
+
     </div>
   </div>
 </template>
@@ -74,6 +73,7 @@ import AdditionalDetails from "@/components/AdditionalDetails.vue";
 import ClaimServicesSection from "@/components/ClaimServicesSection.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import FileProcessing from "@/components/FileProcessing.vue";
+import CaseOverviewSection from "@/components/CaseOverviewSection.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
