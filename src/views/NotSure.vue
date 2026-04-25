@@ -1,6 +1,6 @@
 <template>
   <div class="not-sure-page">
-    <div class="top-bar">
+    <div v-if="currentStep < 5" class="top-bar">
       <button class="back-button" @click="goBack">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
           <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -9,7 +9,7 @@
         Back
       </button>
       <div class="step-indicator">
-        Step {{ currentStep }} of 4
+        {{ currentStep === 4 ? 'Final Step' : 'Step ' + currentStep + ' of 4' }}
       </div>
     </div>
 
@@ -60,7 +60,19 @@
       <ServicesPlanSection />
 
       <ConsiderAddingSection />
+
+      <EstimatedInvestmentSection />
+
+      <div class="action-buttons">
+        <button class="save-draft-btn" @click="router.push('/')">Save as draft</button>
+        <BaseButton class="submit-plan-btn" @click="nextStep">Submit this plan</BaseButton>
+      </div>
     </div>
+
+    <div v-if="currentStep === 5">
+      <SuccessMessage />
+    </div>
+
   </div>
 </template>
 
@@ -78,6 +90,8 @@ import FileProcessing from "@/components/FileProcessing.vue";
 import CaseOverviewSection from "@/components/CaseOverviewSection.vue";
 import ServicesPlanSection from "@/components/ServicesPlanSection.vue";
 import ConsiderAddingSection from "@/components/ConsiderAddingSection.vue";
+import EstimatedInvestmentSection from "@/components/EstimatedInvestmentSection.vue";
+import SuccessMessage from "@/components/SuccessMessage.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
@@ -91,7 +105,7 @@ const goBack = () => {
 }
 
 const nextStep = () => {
-  if (currentStep.value < 4) {
+  if (currentStep.value < 5) {
     currentStep.value++
   }
 }
@@ -149,7 +163,6 @@ const handleFilesSelected = (files) => {
   font-size: 14px;
   font-weight: 600;
   color: var(--secondary-color);
-  text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
@@ -196,5 +209,38 @@ const handleFilesSelected = (files) => {
 
 .build-btn button {
   width: 100%;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 40px;
+}
+
+.save-draft-btn {
+  flex: 1;
+  background: white;
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  padding: 12px 24px;
+  border-radius: var(--border-radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.save-draft-btn:hover {
+  background-color: var(--background-hover-color);
+}
+
+.submit-plan-btn {
+  flex: 2;
+}
+
+@media (max-width: 600px) {
+  .action-buttons {
+    flex-direction: column-reverse;
+  }
 }
 </style>
