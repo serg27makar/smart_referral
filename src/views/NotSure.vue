@@ -32,6 +32,9 @@
       <ExtractedDetailsSection />
 
       <Jurisdiction />
+
+      <AdditionalDetails />
+
     </div>
   </div>
 </template>
@@ -39,11 +42,11 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useClaimStore } from '@/stores/claim'
 import FileUpload from '@/components/FileUpload.vue'
 import Jurisdiction from '@/components/Jurisdiction.vue'
 import ExtractedDetailsSection from '@/components/ExtractedDetailsSection.vue'
 import BaseSection from "@/components/BaseSection.vue";
+import AdditionalDetails from "@/components/AdditionalDetails.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
