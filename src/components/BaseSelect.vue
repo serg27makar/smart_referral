@@ -51,7 +51,6 @@ const select = (option) => {
   isOpen.value = false
 }
 
-// Простая директива для клика вне элемента
 const vOutsideClick = {
   mounted(el, binding) {
     el.clickOutsideEvent = (event) => {

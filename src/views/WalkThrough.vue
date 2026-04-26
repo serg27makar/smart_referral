@@ -19,29 +19,70 @@
       <button class="banner-close" type="button" aria-label="Close" @click="showBanner = false">x</button>
     </div>
 
-    <div v-if="currentStep === 2" class="profile-chip">
-      <span class="chip-step">1</span>
-      <span class="chip-tag">YOU</span>
-      <span class="chip-text">{{ claimStore.claim.requestorName }} · {{ claimStore.claim.clientName }}</span>
-      <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+    <div v-if="currentStep >= 2" class="profile-chips">
+      <div class="profile-chip">
+        <span class="chip-step">1</span>
+        <span class="chip-tag">YOU</span>
+        <span class="chip-text">{{ claimStore.claim.requestorName }} · {{ claimStore.claim.clientName }}</span>
+        <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+      </div>
+
+      <div v-if="currentStep >= 3" class="profile-chip">
+        <span class="chip-step">2</span>
+        <span class="chip-tag">CLAIM TYPE</span>
+        <span class="chip-text">{{ claimStore.claim.typeOfClaim }}</span>
+        <button class="chip-edit" type="button" @click="currentStep = 2">Edit</button>
+      </div>
+
+      <div v-if="currentStep >= 4" class="profile-chip">
+        <span class="chip-step">3</span>
+        <span class="chip-tag">JURISDICTION</span>
+        <span class="chip-text">{{ jurisdictionSummary }}</span>
+        <button class="chip-edit" type="button" @click="currentStep = 3">Edit</button>
+      </div>
     </div>
 
     <WalkThroughBasicsSection v-if="currentStep === 1" @continue="goToStep(2)" />
-    <WalkThroughClaimTypeSection v-if="currentStep === 2" />
+    <WalkThroughClaimTypeSection v-if="currentStep === 2" @continue="goToStep(3)" />
+    <WalkThroughLocationSection v-if="currentStep === 3" @continue="goToStep(4)" />
+    <WalkThroughLossDateSection v-if="currentStep === 4" />
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useClaimStore } from '@/stores/claim'
 import WalkThroughBasicsSection from '@/components/WalkThroughBasicsSection.vue'
 import WalkThroughClaimTypeSection from '@/components/WalkThroughClaimTypeSection.vue'
+import WalkThroughLocationSection from '@/components/WalkThroughLocationSection.vue'
+import WalkThroughLossDateSection from '@/components/WalkThroughLossDateSection.vue'
 
 const router = useRouter()
 const claimStore = useClaimStore()
 const showBanner = ref(true)
-const currentStep = ref(2)
+const currentStep = ref(4)
+
+const stateCodeMap = {
+  California: 'CA',
+  'New York': 'NY',
+  Texas: 'TX',
+  Florida: 'FL',
+  Maryland: 'MD',
+  Ohio: 'OH',
+  Pennsylvania: 'PA'
+}
+
+const jurisdictionSummary = computed(() => {
+  const state = claimStore.claim.state
+  const county = claimStore.claim.county
+  if (!state || !county) {
+    return 'Not selected'
+  }
+
+  const stateCode = stateCodeMap[state] ?? state
+  return `${stateCode} · ${county}`
+})
 
 const goBack = () => {
   if (currentStep.value > 1) {
@@ -109,6 +150,13 @@ const goToStep = (step) => {
   margin-bottom: 18px;
 }
 
+.profile-chips {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
 .profile-chip {
   display: flex;
   align-items: center;
@@ -117,7 +165,6 @@ const goToStep = (step) => {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   background: var(--background-color);
-  margin-bottom: 18px;
 }
 
 .chip-step {
@@ -205,3 +252,4 @@ const goToStep = (step) => {
   }
 }
 </style>
+

@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <BaseSection class="walkthrough-claim-type-section">
     <div class="section-head">
       <h1 class="section-title">What type of claim are you investigating?</h1>
@@ -13,7 +13,7 @@
         :key="option.title"
         class="claim-card"
         :class="{ active: option.title === claimStore.claim.typeOfClaim }"
-        @click="claimStore.claim.typeOfClaim = option.title"
+        @click="selectClaimType(option.title)"
       >
         <h3 class="claim-title">{{ option.title }}</h3>
         <p class="claim-description">{{ option.description }}</p>
@@ -28,6 +28,7 @@ import BaseCard from '@/components/BaseCard.vue'
 import { useClaimStore } from '@/stores/claim'
 
 const claimStore = useClaimStore()
+const emit = defineEmits(['continue'])
 
 const claimOptions = [
   {
@@ -51,6 +52,11 @@ const claimOptions = [
     description: 'Short or long-term disability claim'
   }
 ]
+
+const selectClaimType = (type) => {
+  claimStore.claim.typeOfClaim = type
+  emit('continue')
+}
 </script>
 
 <style scoped>
@@ -124,3 +130,4 @@ const claimOptions = [
   }
 }
 </style>
+
