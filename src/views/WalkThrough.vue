@@ -1,59 +1,71 @@
 <template>
-  <div class="walkthrough-page">
-    <div class="top-bar">
-      <button class="back-button" @click="goBack">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="19" y1="12" x2="5" y2="12"></line>
-          <polyline points="12 19 5 12 12 5"></polyline>
-        </svg>
-        Back
-      </button>
-      <div class="step-indicator">Step {{ currentStep }} of 5</div>
+  <div>
+    <div v-if="!isSuccess" class="walkthrough-page">
+      <div class="top-bar">
+        <button class="back-button" @click="goBack">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back
+        </button>
+        <div class="step-indicator">Step {{ currentStep }} of 5</div>
+      </div>
+
+      <div v-if="currentStep === 1 && showBanner && !showPlan" class="welcome-banner">
+        <span class="banner-icon">*</span>
+        <span class="banner-text">
+          Welcome back, {{ claimStore.claim.requestorName }} - we have pre-filled what we know about you.
+        </span>
+        <button class="banner-close" type="button" aria-label="Close" @click="showBanner = false">x</button>
+      </div>
+
+      <div v-if="currentStep >= 2 && !showPlan" class="profile-chips">
+        <div class="profile-chip">
+          <span class="chip-step">1</span>
+          <span class="chip-tag">YOU</span>
+          <span class="chip-text">{{ claimStore.claim.requestorName }} - {{ claimStore.claim.clientName }}</span>
+          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+        </div>
+
+        <div v-if="currentStep >= 3" class="profile-chip">
+          <span class="chip-step">2</span>
+          <span class="chip-tag">CLAIM TYPE</span>
+          <span class="chip-text">{{ claimStore.claim.typeOfClaim }}</span>
+          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+        </div>
+
+        <div v-if="currentStep >= 4" class="profile-chip">
+          <span class="chip-step">3</span>
+          <span class="chip-tag">JURISDICTION</span>
+          <span class="chip-text">{{ jurisdictionSummary }}</span>
+          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+        </div>
+
+        <div v-if="currentStep >= 5" class="profile-chip">
+          <span class="chip-step">4</span>
+          <span class="chip-tag">DATE OF LOSS</span>
+          <span class="chip-text">{{ lossDateSummary }}</span>
+          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+        </div>
+      </div>
+
+      <template v-if="!showPlan">
+        <WalkThroughBasicsSection v-if="currentStep === 1" @continue="goToStep(2)" />
+        <WalkThroughClaimTypeSection v-if="currentStep === 2" @continue="goToStep(3)" />
+        <WalkThroughLocationSection v-if="currentStep === 3" @continue="goToStep(4)" />
+        <WalkThroughLossDateSection v-if="currentStep === 4" @continue="goToStep(5)" />
+        <WalkThroughServicesSection v-if="currentStep === 5" @build="showPlan = true" />
+      </template>
+
+      <template v-else>
+        <InvestigationPlanSection @submit="handlePlanSubmit" />
+      </template>
     </div>
 
-    <div v-if="currentStep === 1 && showBanner" class="welcome-banner">
-      <span class="banner-icon">*</span>
-      <span class="banner-text">
-        Welcome back, {{ claimStore.claim.requestorName }} - we have pre-filled what we know about you.
-      </span>
-      <button class="banner-close" type="button" aria-label="Close" @click="showBanner = false">x</button>
+    <div v-else>
+      <SuccessMessage />
     </div>
-
-    <div v-if="currentStep >= 2" class="profile-chips">
-      <div class="profile-chip">
-        <span class="chip-step">1</span>
-        <span class="chip-tag">YOU</span>
-        <span class="chip-text">{{ claimStore.claim.requestorName }} - {{ claimStore.claim.clientName }}</span>
-        <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
-      </div>
-
-      <div v-if="currentStep >= 3" class="profile-chip">
-        <span class="chip-step">2</span>
-        <span class="chip-tag">CLAIM TYPE</span>
-        <span class="chip-text">{{ claimStore.claim.typeOfClaim }}</span>
-        <button class="chip-edit" type="button" @click="currentStep = 2">Edit</button>
-      </div>
-
-      <div v-if="currentStep >= 4" class="profile-chip">
-        <span class="chip-step">3</span>
-        <span class="chip-tag">JURISDICTION</span>
-        <span class="chip-text">{{ jurisdictionSummary }}</span>
-        <button class="chip-edit" type="button" @click="currentStep = 3">Edit</button>
-      </div>
-
-      <div v-if="currentStep >= 5" class="profile-chip">
-        <span class="chip-step">4</span>
-        <span class="chip-tag">DATE OF LOSS</span>
-        <span class="chip-text">{{ lossDateSummary }}</span>
-        <button class="chip-edit" type="button" @click="currentStep = 4">Edit</button>
-      </div>
-    </div>
-
-    <WalkThroughBasicsSection v-if="currentStep === 1" @continue="goToStep(2)" />
-    <WalkThroughClaimTypeSection v-if="currentStep === 2" @continue="goToStep(3)" />
-    <WalkThroughLocationSection v-if="currentStep === 3" @continue="goToStep(4)" />
-    <WalkThroughLossDateSection v-if="currentStep === 4" @continue="goToStep(5)" />
-    <WalkThroughServicesSection v-if="currentStep === 5" />
   </div>
 </template>
 
@@ -66,11 +78,15 @@ import WalkThroughClaimTypeSection from '@/components/WalkThroughClaimTypeSectio
 import WalkThroughLocationSection from '@/components/WalkThroughLocationSection.vue'
 import WalkThroughLossDateSection from '@/components/WalkThroughLossDateSection.vue'
 import WalkThroughServicesSection from '@/components/WalkThroughServicesSection.vue'
+import InvestigationPlanSection from '@/components/InvestigationPlanSection.vue'
+import SuccessMessage from "@/components/SuccessMessage.vue";
 
 const router = useRouter()
 const claimStore = useClaimStore()
 const showBanner = ref(true)
-const currentStep = ref(5)
+const currentStep = ref(1)
+const showPlan = ref(false)
+const isSuccess = ref(false)
 
 const stateCodeMap = {
   California: 'CA',
@@ -113,6 +129,10 @@ const goBack = () => {
 
 const goToStep = (step) => {
   currentStep.value = step
+}
+
+const handlePlanSubmit = () => {
+  isSuccess.value = true
 }
 
 const getLifecycleLabel = (date) => {
