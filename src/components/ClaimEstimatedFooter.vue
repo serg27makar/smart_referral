@@ -17,10 +17,8 @@
       </div>
 
       <div class="actions-block">
-        <BaseButton type="primary" outline>
-          Save as Draft
-        </BaseButton>
-        <BaseButton type="primary">
+        <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
+        <BaseButton type="primary" @click="emit('submit')">
           Submit Plan →
         </BaseButton>
       </div>
@@ -32,12 +30,15 @@
 import {computed, onMounted, onUnmounted, ref, watch} from 'vue'
 import { useClaimStore } from '@/stores/claim'
 import BaseButton from '@/components/BaseButton.vue'
+import { useRouter } from "vue-router";
+
+const emit = defineEmits(['submit'])
 
 const claimStore = useClaimStore()
+const router = useRouter()
 
 const MIN_SERVICE_PRICE = 65
 const MAX_SERVICE_PRICE = 90
-const MOBILE_BREAKPOINT = 768
 
 const isMobileVisible = ref(true)
 const lastScrollY = ref(0)
@@ -46,7 +47,6 @@ const selectedServicesCount = computed(() => claimStore.claim.services.length)
 
 watch(() => selectedServicesCount.value, (value, oldValue) => {
   if (value !== oldValue) {
-    console.log('Selected services count changed:', value)
     isMobileVisible.value = true
   }
 })

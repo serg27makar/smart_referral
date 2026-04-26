@@ -1,36 +1,17 @@
 <template>
   <BaseSection class="walkthrough-services-section">
-    <div class="section-head">
-      <h1 class="section-title">Here's what we recommend.</h1>
-      <p class="section-subtitle">
-        Based on your claim type, jurisdiction, and lifecycle stage. You can adjust before submitting.
-      </p>
-    </div>
-
-    <template v-if="!showAllServices">
-      <div class="services-grid compact">
-        <BaseCard
-          v-for="service in selectedServices"
-          :key="service.title"
-          class="service-card"
-          :class="{ selected: isSelected(service.title) }"
-          @click="toggleService(service.title)"
-        >
-          <h3 class="service-title">{{ service.title }}</h3>
-          <p class="service-description">{{ service.text }}</p>
-          <template v-if="service.isRecommended" #footer>
-            <div class="recommended-badge">RECOMMENDED</div>
-          </template>
-        </BaseCard>
+    <template v-if="!showPlan">
+      <div class="section-head">
+        <h1 class="section-title">Here's what we recommend.</h1>
+        <p class="section-subtitle">
+          Based on your claim type, jurisdiction, and lifecycle stage. You can adjust before submitting.
+        </p>
       </div>
-    </template>
 
-    <template v-else>
-      <div v-for="category in serviceCategories" :key="category.label" class="category-block">
-        <div class="category-label">{{ category.label }}</div>
-        <div class="services-grid">
+      <template v-if="!showAllServices">
+        <div class="services-grid compact">
           <BaseCard
-            v-for="service in category.services"
+            v-for="service in selectedServices"
             :key="service.title"
             class="service-card"
             :class="{ selected: isSelected(service.title) }"
@@ -38,27 +19,52 @@
           >
             <h3 class="service-title">{{ service.title }}</h3>
             <p class="service-description">{{ service.text }}</p>
-            <div v-if="isSelected(service.title)" class="selected-badge">
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
-                <polyline points="20 6 9 17 4 12"></polyline>
-              </svg>
-            </div>
             <template v-if="service.isRecommended" #footer>
               <div class="recommended-badge">RECOMMENDED</div>
             </template>
           </BaseCard>
         </div>
+      </template>
+
+      <template v-else>
+        <div v-for="category in serviceCategories" :key="category.label" class="category-block">
+          <div class="category-label">{{ category.label }}</div>
+          <div class="services-grid">
+            <BaseCard
+              v-for="service in category.services"
+              :key="service.title"
+              class="service-card"
+              :class="{ selected: isSelected(service.title) }"
+              @click="toggleService(service.title)"
+            >
+              <h3 class="service-title">{{ service.title }}</h3>
+              <p class="service-description">{{ service.text }}</p>
+              <div v-if="isSelected(service.title)" class="selected-badge">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <template v-if="service.isRecommended" #footer>
+                <div class="recommended-badge">RECOMMENDED</div>
+              </template>
+            </BaseCard>
+          </div>
+        </div>
+      </template>
+
+      <button class="see-all-btn" type="button" @click="showAllServices = !showAllServices">
+        {{ showAllServices ? 'Show less services ->' : 'See all services ->' }}
+      </button>
+
+      <div class="actions">
+        <BaseButton class="build-btn" @click="showPlan = true">Build My Investigation Plan -></BaseButton>
+        <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
       </div>
     </template>
 
-    <button class="see-all-btn" type="button" @click="showAllServices = !showAllServices">
-      {{ showAllServices ? 'Show less services ->' : 'See all services ->' }}
-    </button>
-
-    <div class="actions">
-      <BaseButton class="build-btn" @click="$emit('build')">Build My Investigation Plan -></BaseButton>
-      <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
-    </div>
+    <template v-else>
+      <InvestigationPlanSection @submit="handleSubmitPlan" />
+    </template>
   </BaseSection>
 </template>
 
@@ -67,15 +73,21 @@ import { computed, onMounted, ref } from 'vue'
 import BaseSection from '@/components/BaseSection.vue'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseButton from '@/components/BaseButton.vue'
+import InvestigationPlanSection from '@/components/InvestigationPlanSection.vue'
 import { useClaimStore } from '@/stores/claim'
 import {useRouter} from "vue-router";
 
-defineEmits(['build', 'save-draft'])
+const emit = defineEmits(['build', 'save-draft'])
 
 const claimStore = useClaimStore()
 const router = useRouter()
 
 const showAllServices = ref(false)
+const showPlan = ref(false)
+
+const handleSubmitPlan = () => {
+  emit('build')
+}
 
 const serviceCategories = [
   {

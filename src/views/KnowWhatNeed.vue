@@ -1,43 +1,76 @@
 <template>
   <div class="know-what-need">
-    <button class="back-button" @click="goBack">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="19" y1="12" x2="5" y2="12"></line>
-        <polyline points="12 19 5 12 12 5"></polyline>
-      </svg>
-      Back
-    </button>
+    <template v-if="!showSuccess">
+      <template v-if="!showPlan">
+        <button class="back-button" @click="goBack">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back
+        </button>
 
-    <div class="page-header">
-      <h1 class="page-title">New Investigation Request</h1>
-      <p class="page-subtitle">Fill in the details below – select services and pricing update live at the bottom.</p>
-    </div>
+        <div class="page-header">
+          <h1 class="page-title">New Investigation Request</h1>
+          <p class="page-subtitle">Fill in the details below – select services and pricing update live at the bottom.</p>
+        </div>
 
-    <ClaimUploadSection />
+        <ClaimUploadSection />
 
-    <div class="section-title">SECTION 1 – CLAIM DETAILS</div>
+        <div class="section-title">SECTION 1 – CLAIM DETAILS</div>
 
-    <ClaimDetailsSection />
+        <ClaimDetailsSection />
 
-    <div class="section-title">SECTION 2 – SELECT SERVICES</div>
+        <div class="section-title">SECTION 2 – SELECT SERVICES</div>
 
-    <ClaimServicesSection />
+        <ClaimServicesSection />
 
-    <ClaimEstimatedFooter />
+        <ClaimEstimatedFooter @submit="showPlan = true" />
+      </template>
+
+      <template v-else>
+        <button class="back-button" @click="goBack">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          Back
+        </button>
+        <InvestigationPlanSection @submit="handleSubmit" />
+      </template>
+    </template>
+
+    <template v-else>
+      <SuccessMessage />
+    </template>
   </div>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import ClaimUploadSection from '@/components/ClaimUploadSection.vue'
 import ClaimDetailsSection from '@/components/ClaimDetailsSection.vue'
 import ClaimServicesSection from '@/components/ClaimServicesSection.vue'
 import ClaimEstimatedFooter from '@/components/ClaimEstimatedFooter.vue'
+import InvestigationPlanSection from '@/components/InvestigationPlanSection.vue'
+import SuccessMessage from '@/components/SuccessMessage.vue'
 
 const router = useRouter()
+const showPlan = ref(false)
+const showSuccess = ref(false)
 
 const goBack = () => {
+  if (showPlan.value) {
+    showPlan.value = false
+    return
+  }
   router.push('/')
+}
+
+const handleSubmit = () => {
+  showPlan.value = false
+  showSuccess.value = true
 }
 </script>
 

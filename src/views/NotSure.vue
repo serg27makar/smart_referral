@@ -51,22 +51,7 @@
     </div>
 
     <div v-if="currentStep === 4" class="step-content">
-      <div class="step-header">
-        <h1 class="step-title">Your Investigation Plan</h1>
-      </div>
-      
-      <CaseOverviewSection />
-
-      <ServicesPlanSection />
-
-      <ConsiderAddingSection />
-
-      <EstimatedInvestmentSection />
-
-      <div class="action-buttons">
-        <button class="save-draft-btn" @click="router.push('/')">Save as draft</button>
-        <BaseButton class="submit-plan-btn" @click="nextStep">Submit this plan</BaseButton>
-      </div>
+      <InvestigationPlanSection @submit="nextStep" />
     </div>
 
     <div v-if="currentStep === 5">
@@ -87,10 +72,7 @@ import AdditionalDetails from "@/components/AdditionalDetails.vue";
 import ClaimServicesSection from "@/components/ClaimServicesSection.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import FileProcessing from "@/components/FileProcessing.vue";
-import CaseOverviewSection from "@/components/CaseOverviewSection.vue";
-import ServicesPlanSection from "@/components/ServicesPlanSection.vue";
-import ConsiderAddingSection from "@/components/ConsiderAddingSection.vue";
-import EstimatedInvestmentSection from "@/components/EstimatedInvestmentSection.vue";
+import InvestigationPlanSection from "@/components/InvestigationPlanSection.vue";
 import SuccessMessage from "@/components/SuccessMessage.vue";
 
 const router = useRouter()
