@@ -24,7 +24,7 @@
     </div>
 
     <BaseButton class="continue-btn" :disabled="!claimStore.claim.dateOfInjury" @click="$emit('continue')">
-      Continue →
+      Continue ->
     </BaseButton>
   </BaseSection>
 </template>

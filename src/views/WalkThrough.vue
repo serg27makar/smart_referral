@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="walkthrough-page">
     <div class="top-bar">
       <button class="back-button" @click="goBack">
@@ -23,7 +23,7 @@
       <div class="profile-chip">
         <span class="chip-step">1</span>
         <span class="chip-tag">YOU</span>
-        <span class="chip-text">{{ claimStore.claim.requestorName }} · {{ claimStore.claim.clientName }}</span>
+        <span class="chip-text">{{ claimStore.claim.requestorName }} - {{ claimStore.claim.clientName }}</span>
         <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
       </div>
 
@@ -40,12 +40,20 @@
         <span class="chip-text">{{ jurisdictionSummary }}</span>
         <button class="chip-edit" type="button" @click="currentStep = 3">Edit</button>
       </div>
+
+      <div v-if="currentStep >= 5" class="profile-chip">
+        <span class="chip-step">4</span>
+        <span class="chip-tag">DATE OF LOSS</span>
+        <span class="chip-text">{{ lossDateSummary }}</span>
+        <button class="chip-edit" type="button" @click="currentStep = 4">Edit</button>
+      </div>
     </div>
 
     <WalkThroughBasicsSection v-if="currentStep === 1" @continue="goToStep(2)" />
     <WalkThroughClaimTypeSection v-if="currentStep === 2" @continue="goToStep(3)" />
     <WalkThroughLocationSection v-if="currentStep === 3" @continue="goToStep(4)" />
-    <WalkThroughLossDateSection v-if="currentStep === 4" />
+    <WalkThroughLossDateSection v-if="currentStep === 4" @continue="goToStep(5)" />
+    <WalkThroughServicesSection v-if="currentStep === 5" />
   </div>
 </template>
 
@@ -57,11 +65,12 @@ import WalkThroughBasicsSection from '@/components/WalkThroughBasicsSection.vue'
 import WalkThroughClaimTypeSection from '@/components/WalkThroughClaimTypeSection.vue'
 import WalkThroughLocationSection from '@/components/WalkThroughLocationSection.vue'
 import WalkThroughLossDateSection from '@/components/WalkThroughLossDateSection.vue'
+import WalkThroughServicesSection from '@/components/WalkThroughServicesSection.vue'
 
 const router = useRouter()
 const claimStore = useClaimStore()
 const showBanner = ref(true)
-const currentStep = ref(4)
+const currentStep = ref(5)
 
 const stateCodeMap = {
   California: 'CA',
@@ -81,7 +90,16 @@ const jurisdictionSummary = computed(() => {
   }
 
   const stateCode = stateCodeMap[state] ?? state
-  return `${stateCode} · ${county}`
+  return `${stateCode} - ${county}`
+})
+
+const lossDateSummary = computed(() => {
+  if (!claimStore.claim.dateOfInjury) {
+    return 'Not selected'
+  }
+
+  const lifecycle = getLifecycleLabel(claimStore.claim.dateOfInjury)
+  return `${claimStore.claim.dateOfInjury} - ${lifecycle}`
 })
 
 const goBack = () => {
@@ -95,6 +113,26 @@ const goBack = () => {
 
 const goToStep = (step) => {
   currentStep.value = step
+}
+
+const getLifecycleLabel = (date) => {
+  const lossDate = new Date(date)
+  if (Number.isNaN(lossDate.getTime())) {
+    return 'Early Investigation'
+  }
+
+  const now = new Date()
+  const diffMs = now.getTime() - lossDate.getTime()
+  const monthMs = 1000 * 60 * 60 * 24 * 30.44
+  const monthsOld = Math.max(0, Math.round(diffMs / monthMs))
+
+  if (monthsOld <= 2) {
+    return 'Early Investigation'
+  }
+  if (monthsOld <= 6) {
+    return 'Active Investigation'
+  }
+  return 'Late Investigation'
 }
 </script>
 
@@ -252,4 +290,3 @@ const goToStep = (step) => {
   }
 }
 </style>
-
