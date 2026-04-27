@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import claimData from '@/data/claim.json'
 
 export const useClaimStore = defineStore('claim', () => {
   const MIN_SERVICE_PRICE = 95
