@@ -8,22 +8,22 @@
     </template>
 
     <div class="form-grid">
-      <BaseInput v-model="claimStore.claim.clientName" label="Company" class="grid-col-1" />
-      <BaseInput v-model="claimStore.claim.requestorName" label="Requestor Name" class="grid-col-2" />
-      <BaseInput v-model="claimStore.claim.email" label="Email" class="grid-col-1" />
-      <BaseInput v-model="claimStore.claim.phone" label="Phone" class="grid-col-2" />
-      <BaseInput v-model="claimStore.claim.ccEmails" label="CC Emails (comma separated)" class="grid-full-width" />
+      <BaseInput v-model="claimStore.claim.clientName" label="Company" placeholder="e.g. Acme Corp" class="grid-col-1" />
+      <BaseInput v-model="claimStore.claim.requestorName" label="Requestor Name" placeholder="Full Name" class="grid-col-2" />
+      <BaseInput v-model="claimStore.claim.email" label="Email" placeholder="email@example.com" class="grid-col-1" />
+      <BaseInput v-model="claimStore.claim.phone" label="Phone" placeholder="+1 (555) 000-0000" class="grid-col-2" />
+      <BaseInput v-model="claimStore.claim.ccEmails" label="CC Emails (comma separated)" placeholder="copy1@example.com, copy2@example.com" class="grid-full-width" />
     </div>
 
     <div class="sub-section">
       <div class="sub-section-header">ASSIGNMENT INFORMATION</div>
       <div class="form-grid-3">
-        <BaseInput v-model="claimStore.claim.claimFileNumber" label="Claim / File Number" />
-        <BaseInput v-model="claimStore.claim.claimant" label="Claimant" />
-        <BaseInput v-model="claimStore.claim.insured" label="Insured (Policy Holder)" />
-        <BaseInput v-model="claimStore.claim.claimHandler" label="Claim Handler" />
-        <BaseInput v-model="claimStore.claim.insuredRepresentative" label="Insured Representative" />
-        <BaseInput v-model="claimStore.claim.insuredContactInformation" label="Insured Contact Information" />
+        <BaseInput v-model="claimStore.claim.claimFileNumber" label="Claim / File Number" placeholder="CLM-000-000" />
+        <BaseInput v-model="claimStore.claim.claimant" label="Claimant" placeholder="Full Name" />
+        <BaseInput v-model="claimStore.claim.insured" label="Insured (Policy Holder)" placeholder="Full Name" />
+        <BaseInput v-model="claimStore.claim.claimHandler" label="Claim Handler" placeholder="Full Name" />
+        <BaseInput v-model="claimStore.claim.insuredRepresentative" label="Insured Representative" placeholder="Full Name" />
+        <BaseInput v-model="claimStore.claim.insuredContactInformation" label="Insured Contact Information" placeholder="Email or Phone" />
       </div>
       <div class="checkbox-row">
         <BaseCheckbox v-model="claimStore.claim.isContactMyAccountManager" label="Contact My Account Manager" />
@@ -50,11 +50,13 @@
         <BaseSelect 
           v-model="claimStore.claim.state" 
           label="State" 
+          placeholder="Select State"
           :options="states" 
         />
         <BaseSelect 
           v-model="claimStore.claim.county" 
           label="County / Jurisdiction" 
+          placeholder="Select County"
           :options="counties" 
         />
       </div>
@@ -76,8 +78,8 @@
     <div class="sub-section">
       <div class="sub-section-header">CLAIM DETAILS</div>
       <div class="form-grid">
-        <BaseInput v-model="claimStore.claim.dateOfInjury" label="Date of Injury / Loss" type="date" class="grid-col-1" />
-        <BaseInput v-model="claimStore.claim.descriptionOfInjury" label="Description of Injury / Loss" class="grid-col-2" />
+        <BaseInput v-model="claimStore.claim.dateOfInjury" label="Date of Injury / Loss" type="date" placeholder="YYYY-MM-DD" class="grid-col-1" />
+        <BaseInput v-model="claimStore.claim.descriptionOfInjury" label="Description of Injury / Loss" placeholder="Briefly describe what happened" class="grid-col-2" />
       </div>
     </div>
 

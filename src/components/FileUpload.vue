@@ -22,17 +22,31 @@
       <p class="upload-formats">PDF, PNG, JPG, DOC, DOCX, XLS, XLSX</p>
     </div>
     
-    <div v-if="showEmailPaste" class="email-paste">
+    <div v-if="showEmailPaste && !isProcessing" class="email-paste">
       <span class="email-paste-text">Or paste email text directly</span>
+    </div>
+
+    <div v-if="isProcessing" class="processing-container">
+      <div class="processing-header">
+        <span class="processing-title">Analyzing documents...</span>
+        <span class="processing-percentage">{{ Math.round(progress) }}%</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" :style="{ width: progress + '%' }"></div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 import {computed, ref} from 'vue'
+import { useClaimStore } from '@/stores/claim'
 
 const isDragging = ref(false)
+const isProcessing = ref(false)
+const progress = ref(0)
 const fileInput = ref(null)
+const claimStore = useClaimStore()
 
 const props = defineProps({
   showEmailPaste: {
@@ -49,6 +63,7 @@ const handleDrop = (e) => {
   isDragging.value = false
   const files = e.dataTransfer.files
   if (files && files.length > 0) {
+    processFiles(files)
     emit('files-selected', files)
   }
 }
@@ -56,8 +71,50 @@ const handleDrop = (e) => {
 const handleFileSelect = (e) => {
   const files = e.target.files
   if (files && files.length > 0) {
+    processFiles(files)
     emit('files-selected', files)
   }
+}
+
+const processFiles = (files) => {
+  Array.from(files).forEach(file => {
+    if (file.name.endsWith('.json')) {
+      const reader = new FileReader()
+      reader.onload = (event) => {
+        try {
+          const data = JSON.parse(event.target.result)
+          if (data.clientName || data.claimFileNumber || data.services) {
+            startProcessing(data)
+          }
+        } catch (err) {
+          console.error('Error parsing JSON file:', err)
+        }
+      }
+      reader.readAsText(file)
+    }
+  })
+}
+
+const startProcessing = (data) => {
+  isProcessing.value = true
+  progress.value = 0
+  
+  const duration = 2000 // 2 seconds
+  const interval = 50 // update every 50ms
+  const step = (100 / (duration / interval))
+  
+  const timer = setInterval(() => {
+    progress.value += step
+    if (progress.value >= 100) {
+      progress.value = 100
+      clearInterval(timer)
+      setTimeout(() => {
+        claimStore.updateClaim(data)
+        isProcessing.value = false
+        progress.value = 0
+      }, 200)
+    }
+  }, interval)
 }
 </script>
 
@@ -116,5 +173,45 @@ const handleFileSelect = (e) => {
   font-size: 14px;
   color: var(--my-primary-color);
   cursor: pointer;
+}
+
+.processing-container {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--background-hover-color);
+  border-radius: var(--border-radius);
+}
+
+.processing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.processing-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.processing-percentage {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--my-primary-color);
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background-color: var(--border-color);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--my-primary-color);
+  transition: width 0.05s linear;
 }
 </style>

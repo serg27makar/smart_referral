@@ -18,7 +18,7 @@
         <div class="input-wrap">
           <BaseInput
             v-model="loginInput"
-            placeholder="exemple@advantage"
+            placeholder="example@advantage.com"
             @keyup.enter="handleLogin"
           />
         </div>

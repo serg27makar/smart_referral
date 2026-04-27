@@ -38,17 +38,20 @@
           v-model.number="claimStore.claim.budgetHours" 
           label="Budget Hours" 
           type="number" 
+          placeholder="e.g. 40"
         />
         <BaseInput 
           v-model.number="claimStore.claim.budget" 
           label="Budget $" 
           type="number" 
           step="0.01"
+          placeholder="0.00"
         />
         <BaseInput 
           v-model="claimStore.claim.dueDate" 
           label="Due Date" 
           type="date" 
+          placeholder="YYYY-MM-DD"
         />
       </div>
     </div>

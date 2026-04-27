@@ -27,52 +27,52 @@
       <div class="overview-grid">
         <div class="overview-field">
           <label>COMPANY NAME</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.clientName" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.clientName" placeholder="e.g. Acme Corp" />
           <div v-else class="field-value">{{ claimStore.claim.clientName || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>CLAIM TYPE</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.typeOfClaim" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.typeOfClaim" placeholder="Select Type" />
           <div v-else class="field-value">{{ claimStore.claim.typeOfClaim || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>CLAIMANT</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.claimant" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.claimant" placeholder="Full Name" />
           <div v-else class="field-value">{{ claimStore.claim.claimant || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>INSURED REP</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.insuredRepresentative" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.insuredRepresentative" placeholder="Full Name" />
           <div v-else class="field-value">{{ claimStore.claim.insuredRepresentative || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>DATE OF LOSS</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.dateOfInjury" type="date" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.dateOfInjury" type="date" placeholder="YYYY-MM-DD" />
           <div v-else class="field-value">{{ claimStore.claim.dateOfInjury || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>CLAIM / FILE NUMBER</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.claimFileNumber" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.claimFileNumber" placeholder="CLM-000-000" />
           <div v-else class="field-value">{{ claimStore.claim.claimFileNumber || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>STATE</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.state" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.state" placeholder="e.g. California" />
           <div v-else class="field-value">{{ claimStore.claim.state || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>INSURED</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.insured" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.insured" placeholder="Full Name" />
           <div v-else class="field-value">{{ claimStore.claim.insured || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>CLAIM HANDLER</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.claimHandler" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.claimHandler" placeholder="Full Name" />
           <div v-else class="field-value">{{ claimStore.claim.claimHandler || '—' }}</div>
         </div>
         <div class="overview-field">
           <label>DESCRIPTION</label>
-          <BaseInput v-if="isEditing" v-model="claimStore.claim.descriptionOfInjury" />
+          <BaseInput v-if="isEditing" v-model="claimStore.claim.descriptionOfInjury" placeholder="Describe the injury" />
           <div v-else class="field-value">{{ claimStore.claim.descriptionOfInjury || '—' }}</div>
         </div>
       </div>
