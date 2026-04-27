@@ -15,9 +15,8 @@
       <BaseInput v-model="claimStore.claim.dateOfInjury" type="date" />
     </div>
 
-    <div class="insight-box" v-if="claimStore.claim.dateOfInjury">
-      <span class="insight-icon">*</span>
-      <span class="insight-text">
+    <div class="info-box" v-if="claimStore.claim.dateOfInjury">
+      <span class="info-content">
         Based on this date, this claim is approximately {{ claimAgeText }} old -
         <strong>{{ lifecycleLabel }}</strong>.
       </span>
@@ -161,5 +160,17 @@ const lifecycleLabel = computed(() => {
   .section-title {
     font-size: 33px;
   }
+}
+.info-box {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background-color: var(--background-table-color);
+  border-left: 4px solid var(--my-primary-color);
+  border-radius: 4px;
+}
+
+.info-content {
+  font-size: 14px;
+  color: var(--secondary-color);
 }
 </style>

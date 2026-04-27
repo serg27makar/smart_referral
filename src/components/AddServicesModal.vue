@@ -15,9 +15,8 @@
       </div>
 
       <div class="modal-body">
-        <div class="info-banner compact">
-          <span class="banner-icon">i</span>
-          <span class="banner-text">
+        <div class="info-box">
+          <span class="info-content">
             4 services hidden – 4 services unavailable in CA and 3 services not applicable for Workers Comp. Only services available for your current selections are shown below.
           </span>
         </div>
@@ -41,8 +40,8 @@
       </div>
 
       <div class="modal-footer">
-        <button class="btn-secondary" @click="cancel">Cancel</button>
-        <button class="btn-primary" @click="save">Save Changes</button>
+        <BaseButton type="outline-primary" @click="cancel">Cancel</BaseButton>
+        <BaseButton @click="save">Save Changes</BaseButton>
       </div>
     </div>
   </div>
@@ -51,6 +50,7 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useClaimStore } from '@/stores/claim'
+import BaseButton from "@/components/BaseButton.vue";
 
 const props = defineProps({
   modelValue: Boolean
@@ -153,7 +153,7 @@ const save = () => {
 .modal-title {
   font-size: 24px;
   font-weight: 700;
-  color: #133b74;
+  color: #185bbb;
   margin: 0;
 }
 
@@ -219,6 +219,7 @@ const save = () => {
   color: var(--text-color);
   transition: all 0.2s;
   background: white;
+  background: var(--background-color);
 }
 
 .service-pill:hover {
@@ -246,31 +247,6 @@ const save = () => {
   gap: 12px;
 }
 
-.btn-primary {
-  background-color: var(--my-primary-color);
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: var(--secondary-color);
-  border: 1px solid var(--border-color);
-  padding: 10px 20px;
-  border-radius: 8px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.btn-primary:hover, .btn-secondary:hover {
-  opacity: 0.8;
-}
-
 .close-btn {
   background: none;
   border: none;
@@ -286,8 +262,18 @@ const save = () => {
   .modal-footer {
     flex-direction: column-reverse;
   }
-  .btn-primary, .btn-secondary {
-    width: 100%;
-  }
 }
+.info-box {
+  padding: 12px 16px;
+  background-color: var(--background-table-color);
+  border-left: 4px solid var(--my-primary-color);
+  border-radius: 4px;
+  margin-bottom: 24px;
+}
+
+.info-content {
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+
 </style>

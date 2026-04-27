@@ -13,7 +13,7 @@
           v-for="service in selectedServices"
           :key="service.title"
           class="service-card-unified"
-          :class="{ 'is-selected': isSelected(service.title) }"
+          :class="{ 'is-selected': isSelected(service.title), 'is-recommended': service.isRecommended }"
           @click="toggleService(service.title)"
         >
           <div class="card-content">
@@ -40,7 +40,7 @@
             v-for="service in category.services"
             :key="service.title"
             class="service-card-unified"
-            :class="{ 'is-selected': isSelected(service.title) }"
+            :class="{ 'is-selected': isSelected(service.title), 'is-recommended': service.isRecommended }"
             @click="toggleService(service.title)"
           >
             <div class="card-content">
@@ -66,7 +66,7 @@
 
     <div class="actions">
       <BaseButton class="build-btn" @click="emit('build')">Build My Investigation Plan -></BaseButton>
-      <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
+      <BaseButton type="outline-primary" @click="router.push('/')">Save as Draft</BaseButton>
     </div>
   </BaseSection>
 </template>

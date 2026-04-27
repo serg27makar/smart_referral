@@ -12,9 +12,8 @@
         <div class="step-indicator">Step {{ currentStep }} of 5</div>
       </div>
 
-      <div v-if="currentStep === 1 && showBanner && !showPlan" class="info-banner">
-        <span class="banner-icon">*</span>
-        <span class="banner-text">
+      <div v-if="currentStep === 1 && showBanner && !showPlan" class="info-box">
+        <span class="info-content">
           Welcome back, {{ claimStore.claim.requestorName }} - we have pre-filled what we know about you.
         </span>
         <button class="banner-close" type="button" aria-label="Close" @click="showBanner = false">x</button>
@@ -181,16 +180,6 @@ const getLifecycleLabel = (date) => {
   opacity: 0.8;
 }
 
-.step-indicator {
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--secondary-color);
-  padding: 8px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: var(--background-color);
-}
-
 .profile-chips {
   display: flex;
   flex-direction: column;
@@ -244,14 +233,35 @@ const getLifecycleLabel = (date) => {
   font-size: 14px;
 }
 
+.info-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: var(--background-table-color);
+  border-left: 4px solid var(--my-primary-color);
+  border-radius: 4px;
+}
+
+.info-content {
+  font-size: 14px;
+  color: var(--secondary-color);
+}
+
+.info-box .banner-close {
+  border: none;
+  background: transparent;
+  color: #9b8b61;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  margin-left: auto;
+}
+
 @media (max-width: 768px) {
   .top-bar {
     margin-bottom: 16px;
-  }
-
-  .step-indicator {
-    font-size: 12px;
-    padding: 6px 10px;
   }
 
   .profile-chip {

@@ -31,7 +31,7 @@ defineEmits(['click'])
 <style scoped>
 .base-button {
   padding: 10px 20px;
-  border-radius: var(--border-radius);
+  border-radius: 999px;
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
@@ -64,12 +64,12 @@ defineEmits(['click'])
   filter: brightness(1.1);
 }
 
-.outline.primary {
+.outline-primary {
   background-color: transparent;
   border-color: var(--my-primary-color);
   color: var(--my-primary-color);
 }
-.outline.primary:hover {
+.outline-primary:hover {
   background-color: var(--my-primary-color);
   color: white;
 }

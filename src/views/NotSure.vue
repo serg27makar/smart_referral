@@ -45,8 +45,8 @@
         :budgetEnabled="false"
       />
 
-      <div class="build-btn">
-        <BaseButton @click="nextStep">This looks right – Build My Plan</BaseButton>
+      <div>
+        <BaseButton class="build-plan-btn" @click="nextStep">This looks right – Build My Plan</BaseButton>
       </div>
     </div>
 
@@ -130,13 +130,6 @@ const handleFilesSelected = (files) => {
   opacity: 0.8;
 }
 
-.step-indicator {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--secondary-color);
-  letter-spacing: 0.5px;
-}
-
 .step-content {
   animation: fadeIn 0.3s ease-out;
 }
@@ -180,6 +173,11 @@ const handleFilesSelected = (files) => {
 
 .submit-plan-btn {
   flex: 2;
+}
+
+.build-plan-btn {
+  border-radius: 999px;
+  width: 100%;
 }
 
 @media (max-width: 600px) {

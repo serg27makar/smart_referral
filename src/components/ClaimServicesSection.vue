@@ -12,7 +12,7 @@
           v-for="service in category.services" 
           :key="service.title"
           class="service-card-unified"
-          :class="{ 'is-selected': isSelected(service.title) }"
+          :class="{ 'is-selected': isSelected(service.title), 'is-recommended': service.isRecommended }"
           @click="toggleService(service.title)"
         >
           <div class="card-content">

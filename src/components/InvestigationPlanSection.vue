@@ -13,7 +13,7 @@
     <EstimatedInvestmentSection />
 
     <div class="action-buttons">
-      <button class="save-draft-btn" @click="router.push('/')">Save as draft</button>
+      <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
       <BaseButton class="submit-plan-btn" @click="$emit('submit')">Submit this plan</BaseButton>
     </div>
   </div>
@@ -66,25 +66,13 @@ defineEmits(['submit'])
   margin-top: 40px;
 }
 
-.save-draft-btn {
+.draft-btn {
   flex: 1;
-  background: white;
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  padding: 12px 24px;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
+  border-radius: 999px;
 }
-
-.save-draft-btn:hover {
-  background-color: var(--background-hover-color);
-}
-
 .submit-plan-btn {
-  flex: 2;
+  flex: 1;
+  border-radius: 999px;
 }
 
 @media (max-width: 600px) {

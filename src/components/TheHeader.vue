@@ -11,7 +11,7 @@
     </div>
     
     <div class="header-center">
-      <h1 class="header-title">Smart Referral</h1>
+      <h4 class="section-label">Smart Referral</h4>
     </div>
     
     <div class="header-right">
@@ -69,7 +69,7 @@ defineEmits(['toggle-theme'])
   flex-direction: column;
   line-height: 1;
   font-weight: 800;
-  font-size: 16px;
+  font-size: 14px;
   color: #1a1a1a;
   letter-spacing: -0.5px;
 }
@@ -99,7 +99,7 @@ defineEmits(['toggle-theme'])
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 20px;
+  gap: 12px;
 }
 
 @media (max-width: 768px) {
@@ -157,14 +157,14 @@ defineEmits(['toggle-theme'])
 
 .user-name {
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   color: var(--text-color);
 }
 
 .theme-toggle {
   background: none;
   border: none;
-  font-size: 24px;
+  font-size: 22px;
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;
@@ -180,5 +180,11 @@ defineEmits(['toggle-theme'])
 
 .dark .theme-toggle:hover {
   background-color: rgba(255, 255, 255, 0.1);
+}
+
+.section-label {
+  align-items: center;
+  color: var(--secondary-color);
+  font-size: 14px;
 }
 </style>

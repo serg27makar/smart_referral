@@ -12,27 +12,13 @@
     </div>
 
     <div class="info-blocks">
-      <div class="info-row">
-        <div class="info-icon">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
-        </div>
-        <div class="info-text">
+      <div class="info-box">
+        <div class="info-content">
           Based on Nationwide’s configuration, these services are pre-approved within your carrier’s program. No additional authorization required.
         </div>
       </div>
 
-      <div class="info-row warning">
-        <div class="info-icon">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="16" x2="12" y2="12"></line>
-            <line x1="12" y1="8" x2="12.01" y2="8"></line>
-          </svg>
-        </div>
+      <div class="info-box">
         <div class="info-content">
           <div class="info-title">STATE RESTRICTIONS – CALIFORNIA</div>
           <div class="info-text">
@@ -400,5 +386,18 @@ const removeService = (title) => {
   font-size: 12px;
   color: var(--secondary-color);
   font-style: italic;
+}
+
+.info-box {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background-color: var(--background-table-color);
+  border-left: 4px solid var(--my-primary-color);
+  border-radius: 4px;
+}
+
+.info-content {
+  font-size: 14px;
+  color: var(--secondary-color);
 }
 </style>

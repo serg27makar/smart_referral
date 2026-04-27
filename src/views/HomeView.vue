@@ -1,7 +1,7 @@
 <template>
-  <div class="page-container">
+  <div class="page-container-home">
     <div class="page-header text-center">
-      <h1 class="page-title">How would you like to get started?</h1>
+      <h1 class="page-title mt-6">How would you like to get started?</h1>
       <p class="page-subtitle">Choose the approach that fits how you work today.</p>
     </div>
 
@@ -122,13 +122,16 @@ const navigateTo = (path) => {
   margin-bottom: 8px;
   font-weight: 700;
   color: var(--text-color);
+  text-align: left;
+  display: block;
+  width: 100%;
 }
 
 .recommended-badge {
   text-align: right;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
 }
 
 .badge-text {
@@ -151,7 +154,7 @@ const navigateTo = (path) => {
 
 .recommended-card {
   border: 1px solid rgba(255, 215, 0, 0.4);
-  background: linear-gradient(to bottom right, #fff, #fff9e6);
+  background: linear-gradient(to bottom right, var(--background-color), var(--background-table-color));
 }
 
 .card-description {
@@ -160,6 +163,8 @@ const navigateTo = (path) => {
   line-height: 1.4;
   flex: 1;
   margin-bottom: 16px;
+
+  text-align: left;
 }
 
 .card-button {
@@ -172,4 +177,11 @@ const navigateTo = (path) => {
     grid-template-columns: 1fr;
   }
 }
+
+.page-container-home {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
 </style>

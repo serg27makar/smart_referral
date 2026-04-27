@@ -73,7 +73,7 @@ const router = useRouter()
   line-height: 1.04;
   letter-spacing: -0.02em;
   margin-bottom: 10px;
-  color: #17396a;
+  color: #185bbb;
   font-weight: 700;
 }
 

@@ -35,7 +35,7 @@ defineEmits(['click'])
 }
 
 .base-card-body {
-  padding: 30px 24px;
+  padding: 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -45,6 +45,6 @@ defineEmits(['click'])
 }
 
 .base-card-header, .base-card-footer {
-  padding: 16px 24px;
+  padding: 0 10px 10px;
 }
 </style>

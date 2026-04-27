@@ -1,14 +1,22 @@
 <template>
   <div class="page-container">
     <template v-if="!showSuccess">
-      <template v-if="!showPlan">
-        <button class="back-button" @click="goBack">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-            <line x1="19" y1="12" x2="5" y2="12"></line>
-            <polyline points="12 19 5 12 12 5"></polyline>
-          </svg>
-          Back
-        </button>
+      <div v-if="!showPlan" class="pb-4">
+        <div class="top-bar">
+          <button class="back-button" @click="goBack">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            Back
+          </button>
+
+          <div class="step-indicator">
+            Single Page
+          </div>
+
+        </div>
+
 
         <div class="page-header">
           <h1 class="page-title">New Investigation Request</h1>
@@ -26,9 +34,9 @@
         <ClaimServicesSection />
 
         <ClaimEstimatedFooter @submit="showPlan = true" />
-      </template>
+      </div>
 
-      <template v-else>
+      <div v-else>
         <button class="back-button" @click="goBack">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -37,7 +45,7 @@
           Back
         </button>
         <InvestigationPlanSection @submit="handleSubmit" />
-      </template>
+      </div>
     </template>
 
     <template v-else>
@@ -103,4 +111,12 @@ const handleSubmit = () => {
     padding-bottom: 170px;
   }
 }
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
 </style>

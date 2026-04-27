@@ -65,9 +65,9 @@
         </div>
       </div>
 
-      <div class="note-box">
+      <div class="info-box">
         <div class="note-label">STATE NOTE</div>
-        <div class="note-content">
+        <div class="info-content">
           {{ getStateNote(claimStore.claim.state) }}
         </div>
       </div>
@@ -255,15 +255,7 @@ const getStateNote = (state) => {
 
 .info-content {
   font-size: 14px;
-  color: var(--text-color);
-}
-
-.note-box {
-  margin-top: 16px;
-  padding: 16px;
-  background-color: var(--root-background-color);
-  border: 1px solid var(--border-color);
-  border-radius: var(--border-radius);
+  color: var(--secondary-color);
 }
 
 .note-label {
@@ -271,12 +263,6 @@ const getStateNote = (state) => {
   font-weight: 800;
   color: var(--secondary-color);
   margin-bottom: 4px;
-}
-
-.note-content {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-color);
 }
 
 @media (max-width: 768px) {

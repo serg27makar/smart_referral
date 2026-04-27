@@ -115,7 +115,6 @@ const handleFileSelect = (e) => {
 .email-paste-text {
   font-size: 14px;
   color: var(--my-primary-color);
-  text-decoration: underline;
   cursor: pointer;
 }
 </style>

@@ -69,7 +69,7 @@ const removeCard = (index) => {
 .suggested-card {
   position: relative;
   padding: 24px;
-  background: #fff;
+  background: var(--background-color);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   transition: all 0.2s ease;
