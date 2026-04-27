@@ -1,7 +1,10 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 export const useClaimStore = defineStore('claim', () => {
+  const MIN_SERVICE_PRICE = 95
+  const MAX_SERVICE_PRICE = 130
+
   const claim = ref({
     clientName: 'Advantage Investigate',
     requestorName: 'Joe Anderson',
@@ -52,7 +55,21 @@ export const useClaimStore = defineStore('claim', () => {
     dueDate: ''
   })
 
+  const estimatedRangeText = computed(() => {
+    const count = claim.value.services.length
+    if (count === 0) return '$ 0 – $ 0'
+    
+    const min = count * MIN_SERVICE_PRICE
+    const max = count * MAX_SERVICE_PRICE
+
+    const minFormatted = `$${min.toLocaleString('en-US')}`
+    const maxFormatted = `$${max.toLocaleString('en-US')}`
+
+    return `${minFormatted} – ${maxFormatted}`
+  })
+
   return {
-    claim
+    claim,
+    estimatedRangeText
   }
 })

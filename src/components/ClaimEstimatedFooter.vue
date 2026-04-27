@@ -37,9 +37,6 @@ const emit = defineEmits(['submit'])
 const claimStore = useClaimStore()
 const router = useRouter()
 
-const MIN_SERVICE_PRICE = 65
-const MAX_SERVICE_PRICE = 90
-
 const isMobileVisible = ref(true)
 const lastScrollY = ref(0)
 
@@ -56,15 +53,7 @@ const selectedServicesText = computed(() => {
   return claimStore.claim.services.join(', ')
 })
 
-const estimatedRangeText = computed(() => {
-  const min = selectedServicesCount.value * MIN_SERVICE_PRICE
-  const max = selectedServicesCount.value * MAX_SERVICE_PRICE
-
-  const minFormatted = `$${min.toLocaleString('en-US')}`
-  const maxFormatted = `$${max.toLocaleString('en-US')}`
-
-  return `${minFormatted} – ${maxFormatted}`
-})
+const estimatedRangeText = computed(() => claimStore.estimatedRangeText)
 
 const planMetaText = computed(() => {
   const { state, county, typeOfClaim } = claimStore.claim

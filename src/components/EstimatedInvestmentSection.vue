@@ -4,7 +4,7 @@
     
     <BaseSection>
       <div class="investment-content">
-        <h2 class="investment-title">$ 2,400 – $3,800</h2>
+        <div class="investment-value">{{ claimStore.estimatedRangeText }}</div>
         <p class="investment-subtitle">
           First scope confirmed by your Advantage account manager within 24 hours
         </p>
@@ -15,6 +15,9 @@
 
 <script setup>
 import BaseSection from './BaseSection.vue'
+import { useClaimStore } from '@/stores/claim'
+
+const claimStore = useClaimStore()
 </script>
 
 <style scoped>
@@ -36,7 +39,7 @@ import BaseSection from './BaseSection.vue'
   text-align: left;
 }
 
-.investment-title {
+.investment-value {
   font-size: 32px;
   font-weight: 800;
   color: var(--text-color);
@@ -50,7 +53,7 @@ import BaseSection from './BaseSection.vue'
 }
 
 @media (max-width: 768px) {
-  .investment-title {
+  .investment-value {
     font-size: 28px;
   }
   
