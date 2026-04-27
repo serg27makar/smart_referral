@@ -1,7 +1,7 @@
 <template>
   <BaseSection class="walkthrough-loss-date-section">
     <div class="section-head">
-      <h1 class="section-title">When did the loss occur?</h1>
+      <h1 class="step-header-title">When did the loss occur?</h1>
       <p class="section-subtitle">
         The date of loss determines where this claim sits in its lifecycle - which changes what we recommend.
       </p>

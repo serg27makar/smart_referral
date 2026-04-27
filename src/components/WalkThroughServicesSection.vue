@@ -1,25 +1,32 @@
 <template>
   <BaseSection class="walkthrough-services-section">
     <div class="section-head">
-      <h1 class="section-title">Here's what we recommend.</h1>
+      <h1 class="step-header-title">Here's what we recommend.</h1>
       <p class="section-subtitle">
         Based on your claim type, jurisdiction, and lifecycle stage. You can adjust before submitting.
       </p>
     </div>
 
     <template v-if="!showAllServices">
-      <div class="services-grid compact">
+      <div class="unified-services-grid compact">
         <BaseCard
           v-for="service in selectedServices"
           :key="service.title"
-          class="service-card"
-          :class="{ selected: isSelected(service.title) }"
+          class="service-card-unified"
+          :class="{ 'is-selected': isSelected(service.title) }"
           @click="toggleService(service.title)"
         >
-          <h3 class="service-title">{{ service.title }}</h3>
-          <p class="service-description">{{ service.text }}</p>
+          <div class="card-content">
+            <h3 class="card-title">{{ service.title }}</h3>
+            <p class="card-description">{{ service.text }}</p>
+          </div>
+          <div v-if="isSelected(service.title)" class="selected-badge">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+          </div>
           <template v-if="service.isRecommended" #footer>
-            <div class="recommended-badge">RECOMMENDED</div>
+            <div class="recommended-badge">Recommended</div>
           </template>
         </BaseCard>
       </div>
@@ -28,23 +35,25 @@
     <template v-else>
       <div v-for="category in serviceCategories" :key="category.label" class="category-block">
         <div class="category-label">{{ category.label }}</div>
-        <div class="services-grid">
+        <div class="unified-services-grid">
           <BaseCard
             v-for="service in category.services"
             :key="service.title"
-            class="service-card"
-            :class="{ selected: isSelected(service.title) }"
+            class="service-card-unified"
+            :class="{ 'is-selected': isSelected(service.title) }"
             @click="toggleService(service.title)"
           >
-            <h3 class="service-title">{{ service.title }}</h3>
-            <p class="service-description">{{ service.text }}</p>
+            <div class="card-content">
+              <h3 class="card-title">{{ service.title }}</h3>
+              <p class="card-description">{{ service.text }}</p>
+            </div>
             <div v-if="isSelected(service.title)" class="selected-badge">
               <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
                 <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
             </div>
             <template v-if="service.isRecommended" #footer>
-              <div class="recommended-badge">RECOMMENDED</div>
+              <div class="recommended-badge">Recommended</div>
             </template>
           </BaseCard>
         </div>
@@ -180,6 +189,8 @@ onMounted(() => {
   color: #133b74;
   letter-spacing: -0.01em;
   max-width: 780px;
+  text-transform: none; /* Override global uppercase if needed, but here it looks intentional */
+  margin: 0;
 }
 
 .section-subtitle {
@@ -201,62 +212,8 @@ onMounted(() => {
   margin-bottom: 10px;
 }
 
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.services-grid.compact {
+.unified-services-grid.compact {
   margin-bottom: 8px;
-}
-
-.service-card {
-  border: 1px solid transparent;
-  min-height: 170px;
-  position: relative;
-}
-
-.service-card.selected {
-  border-color: var(--my-primary-color);
-}
-
-.service-card :deep(.base-card-body) {
-  align-items: flex-start;
-  text-align: left;
-  gap: 8px;
-  padding: 38px 16px;
-}
-
-.service-card :deep(.base-card-footer) {
-  padding: 0 16px 14px;
-}
-
-.service-title {
-  font-size: 26px;
-  line-height: 1.08;
-  color: #133b74;
-  margin: 0;
-}
-
-.service-description {
-  margin: 0;
-  color: var(--secondary-color);
-  font-size: 15px;
-  line-height: 1.35;
-}
-
-.recommended-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 4px 8px;
-  border-radius: 999px;
-  background: #efe8d7;
-  color: #9e7b2f;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.05em;
 }
 
 .see-all-btn {
@@ -290,38 +247,9 @@ onMounted(() => {
   color: #cda349;
 }
 
-.selected-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--my-primary-color);
-  color: white;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-@media (max-width: 1100px) {
-  .services-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 768px) {
   .section-title {
     font-size: 33px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-title {
-    font-size: 25px;
   }
 }
 </style>

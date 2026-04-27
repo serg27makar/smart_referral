@@ -1,8 +1,8 @@
 <template>
   <BaseSection class="walkthrough-basics-section">
     <div class="section-head">
-      <h1 class="section-title">Let's start with the basics.</h1>
-      <p class="section-subtitle">
+      <h1 class="step-header-title">Let's start with the basics.</h1>
+      <p class="step-header-subtitle">
         This helps us match your claim to the right investigative services and configure the
         experience for your organization.
       </p>
@@ -74,20 +74,6 @@ const fullName = computed({
   margin-bottom: 24px;
 }
 
-.section-title {
-  font-size: 38px;
-  line-height: 1.15;
-  color: #133b74;
-  letter-spacing: -0.01em;
-}
-
-.section-subtitle {
-  margin-top: 12px;
-  font-size: 16px;
-  color: var(--secondary-color);
-  max-width: 700px;
-}
-
 .form-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -133,10 +119,6 @@ const fullName = computed({
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 30px;
-  }
-
   .form-grid {
     grid-template-columns: 1fr;
   }

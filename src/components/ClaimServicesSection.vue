@@ -7,16 +7,17 @@
 
     <div v-for="category in serviceCategories" :key="category.label" class="service-category">
       <div class="category-label">{{ category.label }}</div>
-      <div class="services-grid">
+      <div class="unified-services-grid">
         <BaseCard 
           v-for="service in category.services" 
           :key="service.title"
-          :class="{ 'is-selected': isSelected(service.title), 'is-recommended': service.isRecommended }"
+          class="service-card-unified"
+          :class="{ 'is-selected': isSelected(service.title) }"
           @click="toggleService(service.title)"
         >
           <div class="card-content">
             <h3 class="card-title">{{ service.title }}</h3>
-            <p class="card-text">{{ service.text }}</p>
+            <p class="card-description">{{ service.text }}</p>
           </div>
           <div v-if="isSelected(service.title)" class="selected-badge">
             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3">
@@ -24,9 +25,7 @@
             </svg>
           </div>
           <template v-if="service.isRecommended" #footer>
-            <div class="recommended-badge-container">
-              <span class="badge-text">Recommended</span>
-            </div>
+            <div class="recommended-badge">Recommended</div>
           </template>
         </BaseCard>
       </div>
@@ -200,108 +199,6 @@ const toggleService = (title) => {
   border-bottom: 1px solid var(--background-hover-color);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  gap: 16px;
-}
-
-@media (min-width: 640px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.base-card {
-  position: relative;
-  text-align: left;
-  height: 100%;
-}
-
-.base-card.is-selected {
-  border: 2px solid var(--my-primary-color);
-  background-color: var(--background-table-color);
-}
-
-.base-card.is-recommended {
-  border: 1px solid rgba(255, 215, 0, 0.3);
-}
-
-.base-card.is-selected.is-recommended {
-  border: 2px solid var(--my-primary-color);
-}
-
-.base-card :deep(.base-card-body) {
-  padding: 20px;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.base-card :deep(.base-card-footer) {
-  padding: 0 20px 20px;
-}
-
-.card-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-}
-
-.card-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: var(--text-color);
-  margin-bottom: 8px;
-}
-
-.card-text {
-  font-size: 13px;
-  color: var(--secondary-color);
-  line-height: 1.4;
-}
-
-.selected-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: var(--my-primary-color);
-  color: white;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
-
-.recommended-badge-container {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.badge-text {
-  background: linear-gradient(135deg, #ffd700, #ff8c00);
-  color: white;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
-}
-
-.is-selected .badge-text {
 }
 
 .budget-grid {

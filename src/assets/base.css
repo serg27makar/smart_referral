@@ -17,6 +17,11 @@
   --secondary-color: #6c757d;
   --info-color: #17a2b8;
 
+  --banner-bg: #efe8d7;
+  --banner-border: #d5c59e;
+  --banner-text: #665939;
+  --banner-accent: #cda349;
+
   --transition-speed: 0.3s;
   --border-radius: 8px;
   --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -82,4 +87,205 @@ h3 {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* Common Layout & Components */
+.page-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+  .page-container {
+    padding: 24px 16px;
+  }
+}
+
+/* Headers */
+.page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 12px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: var(--secondary-color);
+  line-height: 1.5;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-color);
+  margin: 40px 0 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.step-header-title {
+  font-size: 38px;
+  line-height: 1.15;
+  color: #133b74;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+}
+
+.step-header-subtitle {
+  font-size: 16px;
+  color: var(--secondary-color);
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .step-header-title {
+    font-size: 30px;
+  }
+}
+
+.step-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 12px;
+}
+
+@media (max-width: 768px) {
+  .page-title, .step-title {
+    font-size: 24px;
+  }
+}
+
+/* Banners & Info fields */
+.info-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--banner-bg);
+  border: 1px solid var(--banner-border);
+  border-radius: 12px;
+  margin-bottom: 18px;
+}
+
+.info-banner .banner-icon {
+  color: var(--banner-accent);
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.info-banner .banner-text {
+  font-size: 15px;
+  color: var(--banner-text);
+  font-weight: 500;
+  flex: 1;
+}
+
+.info-banner .banner-close {
+  border: none;
+  background: transparent;
+  color: #9b8b61;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* Unified Cards Grid */
+.unified-services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 1100px) {
+  .unified-services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .unified-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Unified Service Card */
+.service-card-unified {
+  border: 1px solid transparent;
+  min-height: 170px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.service-card-unified.is-selected {
+  border-color: var(--my-primary-color);
+  background-color: var(--background-table-color);
+}
+
+.service-card-unified :deep(.base-card-body) {
+  align-items: flex-start;
+  text-align: left;
+  gap: 8px;
+  padding: 38px 16px;
+}
+
+.service-card-unified :deep(.base-card-footer) {
+  padding: 0 16px 14px;
+}
+
+.service-card-unified .card-title {
+  font-size: 1rem;
+  line-height: 1.08;
+  text-align: left;
+  color: #133b74;
+  margin: 0;
+  font-weight: 700;
+  padding: 0.5rem 0;
+}
+
+.service-card-unified .card-description {
+  margin: 0;
+  color: var(--secondary-color);
+  text-align: left;
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.service-card-unified .selected-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: var(--my-primary-color);
+  color: white;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.service-card-unified .recommended-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: white;
+  box-shadow: 0 2px 8px rgba(255, 140, 0, 0.3);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+  .service-card-unified .card-title {
+    font-size: 22px;
+  }
 }

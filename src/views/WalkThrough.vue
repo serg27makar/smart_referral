@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!isSuccess" class="walkthrough-page">
+    <div v-if="!isSuccess" class="page-container">
       <div class="top-bar">
         <button class="back-button" @click="goBack">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
@@ -12,7 +12,7 @@
         <div class="step-indicator">Step {{ currentStep }} of 5</div>
       </div>
 
-      <div v-if="currentStep === 1 && showBanner && !showPlan" class="welcome-banner">
+      <div v-if="currentStep === 1 && showBanner && !showPlan" class="info-banner">
         <span class="banner-icon">*</span>
         <span class="banner-text">
           Welcome back, {{ claimStore.claim.requestorName }} - we have pre-filled what we know about you.
@@ -157,12 +157,6 @@ const getLifecycleLabel = (date) => {
 </script>
 
 <style scoped>
-.walkthrough-page {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -195,17 +189,6 @@ const getLifecycleLabel = (date) => {
   border: 1px solid var(--border-color);
   border-radius: 999px;
   background: var(--background-color);
-}
-
-.welcome-banner {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: #efe8d7;
-  border: 1px solid #d5c59e;
-  border-radius: 12px;
-  margin-bottom: 18px;
 }
 
 .profile-chips {
@@ -261,32 +244,7 @@ const getLifecycleLabel = (date) => {
   font-size: 14px;
 }
 
-.banner-icon {
-  color: #cda349;
-  font-size: 14px;
-}
-
-.banner-text {
-  font-size: 15px;
-  color: #665939;
-  font-weight: 500;
-  flex: 1;
-}
-
-.banner-close {
-  border: none;
-  background: transparent;
-  color: #9b8b61;
-  font-size: 20px;
-  line-height: 1;
-  cursor: pointer;
-}
-
 @media (max-width: 768px) {
-  .walkthrough-page {
-    padding: 24px 16px;
-  }
-
   .top-bar {
     margin-bottom: 16px;
   }
@@ -294,10 +252,6 @@ const getLifecycleLabel = (date) => {
   .step-indicator {
     font-size: 12px;
     padding: 6px 10px;
-  }
-
-  .welcome-banner {
-    align-items: flex-start;
   }
 
   .profile-chip {

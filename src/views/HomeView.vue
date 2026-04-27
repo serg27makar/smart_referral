@@ -1,8 +1,8 @@
 <template>
-  <div class="home-view">
-    <div class="home-header">
-      <h1>How would you like to get started?</h1>
-      <p>Choose the approach that fits how you work today.</p>
+  <div class="page-container">
+    <div class="page-header text-center">
+      <h1 class="page-title">How would you like to get started?</h1>
+      <p class="page-subtitle">Choose the approach that fits how you work today.</p>
     </div>
 
     <div class="cards-grid">
@@ -19,7 +19,7 @@
             <span class="badge-subtext">Based on your history</span>
           </div>
         </div>
-        <h3>{{ card.title }}</h3>
+        <h3 class="card-title-home">{{ card.title }}</h3>
         <p class="card-description">{{ card.description }}</p>
         <BaseButton class="card-button" @click.stop="navigateTo(card.path)">
           {{ card.buttonText }}
@@ -78,33 +78,15 @@ const navigateTo = (path) => {
 </script>
 
 <style scoped>
-.home-view {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-.home-header {
+.page-header.text-center {
   text-align: center;
-  margin-bottom: 50px;
-}
-
-.home-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--text-color);
-}
-
-.home-header p {
-  font-size: 1.2rem;
-  color: var(--secondary-color);
+  margin-bottom: 32px;
 }
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
 }
 
 .card-top-row {
@@ -112,23 +94,34 @@ const navigateTo = (path) => {
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .card-icon {
   color: var(--my-primary-color);
   background-color: rgba(41, 129, 250, 0.1);
-  padding: 12px;
-  border-radius: 12px;
+  padding: 10px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
-  box-shadow: 0 5px 5px rgba(41, 129, 250, 0.25);
+}
+
+.card-icon :deep(svg) {
+  width: 24px;
+  height: 24px;
 }
 
 .base-card:hover .card-icon {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1);
+}
+
+.card-title-home {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--text-color);
 }
 
 .recommended-badge {
@@ -141,70 +134,42 @@ const navigateTo = (path) => {
 .badge-text {
   background: linear-gradient(135deg, #ffd700, #ff8c00);
   color: white;
-  padding: 4px 12px;
+  padding: 3px 10px;
   border-radius: 20px;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 10px rgba(255, 140, 0, 0.3);
-  animation: pulse 2s infinite;
 }
 
 .badge-subtext {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   color: var(--secondary-color);
-  margin-top: 4px;
+  margin-top: 2px;
   font-weight: 500;
 }
 
 .recommended-card {
-  border: 1px solid rgba(255, 215, 0, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.recommended-card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  background: linear-gradient(to bottom right, #fff, #fff9e6);
 }
 
 .card-description {
   color: var(--secondary-color);
-  font-size: 1rem;
-  line-height: 1.5;
+  font-size: 0.9rem;
+  line-height: 1.4;
   flex: 1;
+  margin-bottom: 16px;
 }
 
 .card-button {
   width: 100%;
-  margin-top: 8px;
+  min-height: 44px;
 }
 
 @media (max-width: 768px) {
-  .home-header h1 {
-    font-size: 1.8rem;
-  }
-  
-  .home-header p {
-    font-size: 1rem;
-  }
-
   .cards-grid {
     grid-template-columns: 1fr;
-    gap: 20px;
   }
 }
 </style>

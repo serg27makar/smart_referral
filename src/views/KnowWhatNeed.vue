@@ -1,5 +1,5 @@
 <template>
-  <div class="know-what-need">
+  <div class="page-container">
     <template v-if="!showSuccess">
       <template v-if="!showPlan">
         <button class="back-button" @click="goBack">
@@ -75,13 +75,6 @@ const handleSubmit = () => {
 </script>
 
 <style scoped>
-.know-what-need {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  padding-bottom: 140px;
-}
-
 .back-button {
   display: flex;
   align-items: center;
@@ -105,28 +98,8 @@ const handleSubmit = () => {
   margin-bottom: 32px;
 }
 
-.page-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-color);
-  margin-bottom: 8px;
-}
-
-.page-subtitle {
-  font-size: 16px;
-  color: var(--secondary-color);
-}
-
-.section-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-color);
-  margin: 40px 0 16px;
-  letter-spacing: 0.5px;
-}
-
 @media (max-width: 768px) {
-  .know-what-need {
+  .page-container {
     padding-bottom: 170px;
   }
 }

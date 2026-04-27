@@ -1,5 +1,5 @@
 <template>
-  <div class="not-sure-page">
+  <div class="page-container">
     <div v-if="currentStep < 5" class="top-bar">
       <button class="back-button" @click="goBack">
         <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
@@ -99,18 +99,6 @@ const handleFilesSelected = (files) => {
 </script>
 
 <style scoped>
-.not-sure-page {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 20px;
-}
-
-@media (max-width: 768px) {
-  .not-sure-page {
-    padding: 24px 16px;
-  }
-}
-
 .top-bar {
   display: flex;
   justify-content: space-between;
@@ -160,33 +148,6 @@ const handleFilesSelected = (files) => {
 .step-header {
   text-align: center;
   margin-bottom: 40px;
-}
-
-.step-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: var(--text-color);
-  margin-bottom: 12px;
-}
-
-@media (max-width: 768px) {
-  .step-title {
-    font-size: 24px;
-  }
-}
-
-.step-subtitle {
-  font-size: 16px;
-  color: var(--secondary-color);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.5;
-}
-
-@media (max-width: 768px) {
-  .step-subtitle {
-    font-size: 14px;
-  }
 }
 
 .build-btn button {
