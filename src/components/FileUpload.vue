@@ -48,16 +48,14 @@ const emit = defineEmits(['files-selected'])
 const handleDrop = (e) => {
   isDragging.value = false
   const files = e.dataTransfer.files
-  console.log('Dropped files:', files)
-  if (files.length > 0) {
+  if (files && files.length > 0) {
     emit('files-selected', files)
   }
 }
 
 const handleFileSelect = (e) => {
   const files = e.target.files
-  console.log('Selected files:', files)
-  if (files.length > 0) {
+  if (files && files.length > 0) {
     emit('files-selected', files)
   }
 }

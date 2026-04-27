@@ -24,7 +24,7 @@
     </div>
 
     <div v-if="currentStep === 2" class="step-content">
-      <FileProcessing @complete="nextStep" />
+      <FileProcessing :inputFiles="selectedFiles" @complete="nextStep" />
     </div>
 
     <div v-if="currentStep === 3" class="step-content">
@@ -77,6 +77,7 @@ import SuccessMessage from "@/components/SuccessMessage.vue";
 
 const router = useRouter()
 const currentStep = ref(1)
+const selectedFiles = ref([])
 
 const goBack = () => {
   if (currentStep.value > 1) {
@@ -93,7 +94,7 @@ const nextStep = () => {
 }
 
 const handleFilesSelected = (files) => {
-  console.log('Files received in NotSure.vue:', files)
+  selectedFiles.value = Array.from(files)
   nextStep()
 }
 </script>

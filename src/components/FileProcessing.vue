@@ -41,50 +41,58 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 
 const emit = defineEmits(['complete'])
 
-// Псевдо-список файлов для демонстрации, если реальные файлы не переданы
 const props = defineProps({
   inputFiles: {
     type: Array,
-    default: () => [
-      { name: 'claim_report_v1.pdf' },
-      { name: 'medical_notes.docx' },
-      { name: 'accident_photo_01.jpg' }
-    ]
+    default: () => []
   }
 })
 
-const files = ref(props.inputFiles)
+const files = computed(() => props.inputFiles)
 const processedCount = ref(0)
 const progress = ref(0)
 let timer = null
 
-onMounted(() => {
-  const totalDuration = 5000 // 5 секунд
-  const interval = 50
-  const step = 100 / (totalDuration / interval)
-  
-  timer = setInterval(() => {
-    progress.value += step
-    
-    // Рассчитываем сколько файлов "обработано" на основе прогресса
-    const newProcessedCount = Math.floor((progress.value / 100) * files.value.length)
-    if (newProcessedCount > processedCount.value && newProcessedCount <= files.value.length) {
-      processedCount.value = newProcessedCount
+onMounted(async () => {
+  if (files.value.length === 0) {
+    progress.value = 100
+    setTimeout(() => emit('complete'), 500)
+    return
+  }
+
+  for (let i = 0; i < files.value.length; i++) {
+    const file = files.value[i]
+    processedCount.value = i
+
+    try {
+      const formData = new FormData()
+      formData.append("file", file)
+
+      const res = await fetch("http://localhost:3000/upload", {
+        method: "POST",
+        body: formData
+      })
+
+      const data = await res.json()
+      console.log(`Upload result for ${file.name}:`, data)
+    } catch (error) {
+      console.error(`Error uploading ${file.name}:`, error)
     }
 
-    if (progress.value >= 100) {
-      progress.value = 100
-      processedCount.value = files.value.length
-      clearInterval(timer)
-      setTimeout(() => {
-        emit('complete')
-      }, 500)
-    }
-  }, interval)
+    processedCount.value = i + 1
+    progress.value = ((i + 1) / files.value.length) * 100
+  }
+
+  if (progress.value >= 100) {
+    progress.value = 100
+    setTimeout(() => {
+      emit('complete')
+    }, 500)
+  }
 })
 
 onUnmounted(() => {
