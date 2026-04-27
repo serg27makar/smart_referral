@@ -71,71 +71,25 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, computed } from 'vue'
+import { useClaimStore } from '@/stores/claim'
 import AddServicesModal from './AddServicesModal.vue'
+import servicesData from '@/data/services.json'
 
 const showModal = ref(false)
+const claimStore = useClaimStore()
 
-const planServices = reactive([
-  {
-    title: 'AOE/COE Investigation',
-    description: 'Establishes whether the injury occurred during the scope of employment.',
-    isRecommended: true,
-    recommendedText: 'State-mandated for California WC claims.',
-    extraText: 'Ordered in 94% of California WC claims at initial and active stages.',
-    metric: '94% of CA WC claims',
-    showMore: false
-  },
-  {
-    title: 'Activity Check – Field Surveillance',
-    description: 'Covert field observation to document claimant’s physical activity and capabilities.',
-    isRecommended: false,
-    recommendedText: 'Recommended to verify self-reported physical limitations.',
-    extraText: 'Highly effective for identifying activity inconsistencies.',
-    metric: '78% similar claims',
-    showMore: false
-  },
-  {
-    title: 'Social Media Investigation (NetSwep)',
-    description: 'Comprehensive social media and digital footprint analysis across all major platforms.',
-    isRecommended: false,
-    recommendedText: 'Recommended when physical activity inconsistency is suspected.',
-    extraText: 'Can reveal public activities inconsistent with claim details.',
-    metric: '67% similar claims',
-    showMore: false
-  },
-  {
-    title: 'Recorded Statement',
-    description: 'Formal recorded interview with claimant to document their account on record.',
-    isRecommended: true,
-    recommendedText: 'Recommended for memorializing early claimant testimony.',
-    extraText: 'Reduces likelihood of litigation by 82% when taken within 48 hours.',
-    metric: '82% avoided litigation',
-    showMore: false
-  },
-  {
-    title: 'Background Investigation',
-    description: 'Full background check including employment history, criminal records, and financial status.',
-    isRecommended: false,
-    descriptionShort: 'Full background check.',
-    metric: '35% relevant info',
-    showMore: false
-  },
-  {
-    title: 'Medical Records Review',
-    description: 'Comprehensive review of claimant’s medical history and treatment records.',
-    isRecommended: false,
-    recommendedText: 'Recommended for identifying pre-existing conditions.',
-    extraText: 'Identifies relevant prior medical history in 72% of cases.',
-    metric: '72% of flagged claims',
-    showMore: false
-  }
-])
+const planServices = computed(() => {
+  return claimStore.claim.services.map(title => {
+    const service = servicesData.find(s => s.title === title)
+    return service ? { ...service } : { title, description: '', showMore: false }
+  })
+})
 
 const removeService = (title) => {
-  const index = planServices.findIndex(s => s.title === title)
+  const index = claimStore.claim.services.indexOf(title)
   if (index !== -1) {
-    planServices.splice(index, 1)
+    claimStore.claim.services.splice(index, 1)
   }
 }
 </script>

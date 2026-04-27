@@ -30,6 +30,23 @@ export const useClaimStore = defineStore('claim', () => {
     redFlags: ["Prior claims history", "Inconsistent statements"],
 
     services: [],
+    suggestedServices: [
+      {
+        title: 'Scene Investigation',
+        description: 'On-site inspection and documentation of the reported incident location.',
+        extra: 'Ordered in 41% of similar claims.'
+      },
+      {
+        title: 'Witness Canvass & Interviews',
+        description: 'Identify and interview potential witnesses near the incident location.',
+        extra: '58% of cases resolved 20% faster.'
+      },
+      {
+        title: 'Sub Rosa Video Surveillance',
+        description: 'Extended covert video surveillance over multiple days.',
+        extra: 'Ordered in 52% of high-reserve WC claims.'
+      }
+    ],
     budgetHours: 0,
     budget: 0.00,
     dueDate: ''

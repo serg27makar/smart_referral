@@ -59,6 +59,7 @@
 import { useClaimStore } from '@/stores/claim'
 import BaseCard from '@/components/BaseCard.vue'
 import BaseInput from '@/components/BaseInput.vue'
+import servicesData from '@/data/services.json'
 
 const claimStore = useClaimStore()
 
@@ -77,59 +78,72 @@ defineProps({
   }
 })
 
+const getServiceData = (title, defaultText = '', defaultIsRecommended = false) => {
+  const service = servicesData.find(s => s.title === title)
+  return service ? {
+    title: service.title,
+    text: service.text || service.description,
+    isRecommended: service.isRecommended
+  } : {
+    title,
+    text: defaultText,
+    isRecommended: defaultIsRecommended
+  }
+}
+
 const serviceCategories = [
   {
     label: 'BACKGROUND & RESEARCH',
     services: [
-      { title: 'Background Investigation', text: 'Criminal records, employment & public records check.', isRecommended: false },
-      { title: 'Background Investigation + Social Media', text: 'Full background plus deep social media review.', isRecommended: true },
-      { title: 'Asset Check', text: 'Real property, vehicles & financial assets held by subject.', isRecommended: false },
-      { title: 'NetSweep', text: 'Comprehensive social & internet presence scan.', isRecommended: false },
-      { title: 'Social Media Only', text: 'Targeted review of subject’s social accounts.', isRecommended: false },
-      { title: 'Claims Investigations', text: 'General review of circumstances and validity of a claim.', isRecommended: false },
-      { title: 'Locate', text: 'Find current address, phone or whereabouts of a subject.', isRecommended: false },
-      { title: 'Report Procurement', text: 'Obtain police, fire or other official incident reports.', isRecommended: false }
+      getServiceData('Background Investigation'),
+      getServiceData('Background Investigation + Social Media'),
+      getServiceData('Asset Check'),
+      getServiceData('NetSweep'),
+      getServiceData('Social Media Only'),
+      getServiceData('Claims Investigations'),
+      getServiceData('Locate'),
+      getServiceData('Report Procurement')
     ]
   },
   {
     label: 'SURVEILLANCE',
     services: [
-      { title: 'Activity Check', text: 'Covert observation to document daily routine and activity.', isRecommended: false },
-      { title: 'Surveillance – 1 Investigator', text: 'Single investigator covert surveillance.', isRecommended: false },
-      { title: 'Surveillance – 2 Investigator', text: 'Two-investigator surveillance for complex subjects.', isRecommended: false },
-      { title: 'Remote Control Surveillance (RSC)', text: 'GPS-assisted remote surveillance & tracking.', isRecommended: false },
-      { title: 'True View Package', text: 'Background, remote and traditional surveillance combined.', isRecommended: true },
-      { title: 'Scene Investigation', text: 'On-site inspection and photo/video of the incident location.', isRecommended: false }
+      getServiceData('Activity Check'),
+      getServiceData('Surveillance - 1 Investigator'),
+      getServiceData('Surveillance - 2 Investigator'),
+      getServiceData('Remote Controlled Surveillance (RCS)'),
+      getServiceData('True View Package'),
+      getServiceData('Scene Investigation')
     ]
   },
   {
     label: 'MEDICAL & TREATMENT',
     services: [
-      { title: 'AOE/COE Investigation', text: 'Determines if injury arose out of and in course of employment.', isRecommended: false },
-      { title: 'Medical Canvass with 15 locations', text: 'Canvass 15 medical facilities for undisclosed treatment.', isRecommended: false },
-      { title: 'Medical Canvass with 20 locations', text: 'Canvass 20 medical facilities for undisclosed treatment.', isRecommended: false },
-      { title: 'Medical Canvass with 30 locations', text: 'Canvass 30 medical facilities for undisclosed treatment.', isRecommended: false },
-      { title: 'Medical Canvass with 40 locations', text: 'Canvass 40 medical facilities for undisclosed treatment.', isRecommended: false },
-      { title: 'Dependency check', text: 'Verifies claim dependents and benefit eligibility.', isRecommended: false },
-      { title: 'Alive and Wellness Check', text: 'Confirms claimant or beneficiary is alive at reported location.', isRecommended: false }
+      getServiceData('AOE/COE Investigation'),
+      getServiceData('Medical Canvass with 15 locations'),
+      getServiceData('Medical Canvass with 20 locations', 'Canvass 20 medical facilities for undisclosed treatment.'),
+      getServiceData('Medical Canvass with 30 locations', 'Canvass 30 medical facilities for undisclosed treatment.'),
+      getServiceData('Medical Canvass with 40 locations', 'Canvass 40 medical facilities for undisclosed treatment.'),
+      getServiceData('Dependency Check'),
+      getServiceData('Alive and Wellness Check')
     ]
   },
   {
     label: 'INTERVIEWS & STATEMENTS',
     services: [
-      { title: 'Recorder Statement', text: 'Formal recorded interview with the claimant on the record.', isRecommended: false },
-      { title: 'Document Delivery', text: 'Secure hand-delivery of legal or investigative documents.', isRecommended: false },
-      { title: 'Subpoena', text: 'Service of legal subpoenas to individuals or organizations.', isRecommended: false },
-      { title: 'Subrogation', text: 'Identifies third-party liability to support cost recovery.', isRecommended: false }
+      getServiceData('Recorded Statement'),
+      getServiceData('Document Delivery'),
+      getServiceData('Subpoena'),
+      getServiceData('Subrogation')
     ]
   },
   {
     label: 'SIU & FRAUD',
     services: [
-      { title: 'SIU', text: 'Special Investigations Unit referral for suspected fraud.', isRecommended: false },
-      { title: 'SIU Compliance', text: 'Ensures investigation meets SIU regulatory requirements.', isRecommended: false },
-      { title: 'Construction', text: 'On-site investigation of construction-related claims.', isRecommended: false },
-      { title: 'Other', text: 'Custom service request – describe in the notes.', isRecommended: false }
+      getServiceData('SIU'),
+      getServiceData('SIU Compliance'),
+      getServiceData('Construction', 'On-site investigation of construction-related claims.'),
+      getServiceData('Other', 'Custom service request – describe in the notes.')
     ]
   }
 ]

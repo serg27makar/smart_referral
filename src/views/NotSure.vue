@@ -148,33 +148,6 @@ const handleFilesSelected = (files) => {
   width: 100%;
 }
 
-.action-buttons {
-  display: flex;
-  gap: 16px;
-  margin-top: 40px;
-}
-
-.save-draft-btn {
-  flex: 1;
-  background: white;
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-  padding: 12px 24px;
-  border-radius: var(--border-radius);
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-.save-draft-btn:hover {
-  background-color: var(--background-hover-color);
-}
-
-.submit-plan-btn {
-  flex: 2;
-}
-
 .build-plan-btn {
   border-radius: 999px;
   width: 100%;

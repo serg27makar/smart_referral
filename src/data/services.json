@@ -1,0 +1,232 @@
+[
+  {
+    "title": "Background Investigation",
+    "description": "Full background check including employment history, criminal records, and financial status.",
+    "text": "Criminal records, employment & public records check.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for verifying subject history and identifying potential risk factors.",
+    "metric": "35% relevant info",
+    "showMore": false
+  },
+  {
+    "title": "Background Investigation + Social Media",
+    "description": "Full background investigation combined with deep social media analysis.",
+    "text": "Full background plus deep social media review.",
+    "isRecommended": true,
+    "recommendedText": "Recommended for comprehensive claimant profiling.",
+    "metric": "61% deeper insights",
+    "extraText": "Combines offline and online intelligence for deeper insights.",
+    "showMore": false
+  },
+  {
+    "title": "Asset Check",
+    "description": "Investigation of real property, vehicles, and financial assets held by the subject.",
+    "text": "Real property, vehicles & financial assets held by subject.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when financial exposure or hidden assets are a concern.",
+    "metric": "42% asset discovery",
+    "showMore": false
+  },
+  {
+    "title": "NetSweep",
+    "description": "Comprehensive social media and digital footprint analysis across all major platforms.",
+    "text": "Comprehensive social & internet presence scan.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for uncovering online activity and digital footprint evidence.",
+    "metric": "67% similar claims",
+    "showMore": false
+  },
+  {
+    "title": "Social Media Only",
+    "description": "Targeted review of subject’s social media accounts and public online activity.",
+    "text": "Targeted review of subject’s social accounts.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for quick validation of social activity without full investigation.",
+    "metric": "54% useful findings",
+    "showMore": false
+  },
+  {
+    "title": "Claims Investigations",
+    "description": "General investigation into claim validity and circumstances.",
+    "text": "General review of circumstances and validity of a claim.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when claim details require verification or clarification.",
+    "metric": "63% case clarification",
+    "showMore": false
+  },
+  {
+    "title": "Locate",
+    "description": "Service to determine current address, phone number, or whereabouts of a subject.",
+    "text": "Find current address, phone or whereabouts of a subject.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when subject location is unknown or outdated.",
+    "metric": "88% success rate",
+    "showMore": false
+  },
+  {
+    "title": "Report Procurement",
+    "description": "Obtaining official reports such as police, fire, or incident records.",
+    "text": "Obtain police, fire or other official incident reports.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when official documentation is required for case validation.",
+    "metric": "91% retrieval success",
+    "showMore": false
+  },
+  {
+    "title": "Activity Check",
+    "description": "Covert observation to document claimant’s daily routine and activity.",
+    "text": "Covert observation to document daily routine and activity.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for general observation of claimant lifestyle and behavior.",
+    "metric": "58% activity insights",
+    "showMore": false
+  },
+  {
+    "title": "Activity Check – Field Surveillance",
+    "description": "Covert field observation to document claimant’s physical activity and capabilities.",
+    "text": "Covert observation to document daily routine and activity.",
+    "isRecommended": false,
+    "recommendedText": "Recommended to verify self-reported physical limitations.",
+    "extraText": "Highly effective for identifying activity inconsistencies.",
+    "metric": "78% similar claims",
+    "showMore": false
+  },
+  {
+    "title": "Surveillance - 1 Investigator",
+    "description": "Single investigator conducting covert surveillance operations.",
+    "text": "Single investigator covert surveillance.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for standard surveillance cases with moderate complexity.",
+    "metric": "64% usable footage",
+    "showMore": false
+  },
+  {
+    "title": "Surveillance - 2 Investigator",
+    "description": "Two investigators conducting coordinated surveillance for complex cases.",
+    "text": "Two-investigator surveillance for complex subjects.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for complex cases requiring continuous or multi-angle coverage.",
+    "metric": "81% extended coverage",
+    "showMore": false
+  },
+  {
+    "title": "Remote Controlled Surveillance (RCS)",
+    "description": "GPS-assisted remote surveillance and tracking of subject activity.",
+    "text": "GPS-assisted remote surveillance & tracking.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when continuous tracking is needed without physical presence.",
+    "metric": "73% tracking efficiency",
+    "showMore": false
+  },
+  {
+    "title": "True View Package",
+    "description": "Combined package including background, remote, and traditional surveillance.",
+    "text": "Background, remote and traditional surveillance combined.",
+    "isRecommended": true,
+    "recommendedText": "Recommended for comprehensive investigations.",
+    "metric": "89% full visibility",
+    "extraText": "Maximizes visibility across all investigation channels.",
+    "showMore": false
+  },
+  {
+    "title": "Scene Investigation",
+    "description": "On-site inspection and documentation of incident location.",
+    "text": "On-site inspection and photo/video of the incident location.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when physical evidence or scene verification is required.",
+    "metric": "69% evidence validation",
+    "showMore": false
+  },
+  {
+    "title": "AOE/COE Investigation",
+    "description": "Establishes whether the injury occurred during the scope of employment.",
+    "text": "Determines if injury arose out of and in course of employment.",
+    "isRecommended": true,
+    "recommendedText": "State-mandated for California WC claims.",
+    "metric": "94% of CA WC claims",
+    "extraText": "Ordered in 94% of California WC claims at initial and active stages.",
+    "showMore": false
+  },
+  {
+    "title": "Medical Canvass with 15 locations",
+    "description": "Canvass of 15 medical facilities to identify undisclosed treatment history.",
+    "text": "Canvass 15 medical facilities for undisclosed treatment.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for identifying undisclosed medical treatment history.",
+    "metric": "72% of flagged claims",
+    "showMore": false
+  },
+  {
+    "title": "Dependency Check",
+    "description": "Verification of claim dependents and benefit eligibility.",
+    "text": "Verifies claim dependents and benefit eligibility.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when validating dependent eligibility for benefits.",
+    "metric": "66% eligibility accuracy",
+    "showMore": false
+  },
+  {
+    "title": "Alive and Wellness Check",
+    "description": "Verification that claimant or beneficiary is alive and at reported location.",
+    "text": "Confirms claimant or beneficiary is alive at reported location.",
+    "isRecommended": false,
+    "recommendedText": "Recommended for periodic verification of claimant status.",
+    "metric": "97% confirmation rate",
+    "showMore": false
+  },
+  {
+    "title": "Recorded Statement",
+    "description": "Formal recorded interview with claimant to document their account on record.",
+    "text": "Formal recorded interview with the claimant on the record.",
+    "isRecommended": true,
+    "recommendedText": "Recommended for memorializing early claimant testimony.",
+    "metric": "82% avoided litigation",
+    "extraText": "Reduces likelihood of litigation by 82% when taken within 48 hours.",
+    "showMore": false
+  },
+  {
+    "title": "Document Delivery",
+    "description": "Secure delivery of legal or investigative documents.",
+    "text": "Secure hand-delivery of legal or investigative documents.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when secure and verifiable document delivery is required.",
+    "metric": "96% delivery success",
+    "showMore": false
+  },
+  {
+    "title": "Subpoena",
+    "description": "Service of legal subpoenas to individuals or organizations.",
+    "text": "Service of legal subpoenas.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when legal compulsion is required to obtain information.",
+    "metric": "84% compliance rate",
+    "showMore": false
+  },
+  {
+    "title": "Subrogation",
+    "description": "Identification of third-party liability to support cost recovery.",
+    "text": "Identifies third-party liability to support cost recovery.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when potential third-party liability exists.",
+    "metric": "59% recovery potential",
+    "showMore": false
+  },
+  {
+    "title": "SIU",
+    "description": "Special Investigations Unit referral for suspected fraud cases.",
+    "text": "SIU referral for suspected fraud.",
+    "isRecommended": false,
+    "recommendedText": "Recommended when fraud indicators are present in the claim.",
+    "metric": "48% fraud detection",
+    "showMore": false
+  },
+  {
+    "title": "SIU Compliance",
+    "description": "Ensures investigations meet SIU regulatory compliance requirements.",
+    "text": "Ensures investigation meets SIU regulatory requirements.",
+    "isRecommended": false,
+    "recommendedText": "Recommended to ensure compliance with SIU regulations and standards.",
+    "metric": "100% compliance alignment",
+    "showMore": false
+  }
+]

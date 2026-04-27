@@ -48,9 +48,10 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { useClaimStore } from '@/stores/claim'
 import BaseButton from "@/components/BaseButton.vue";
+import servicesData from '@/data/services.json'
 
 const props = defineProps({
   modelValue: Boolean
@@ -59,34 +60,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 const claimStore = useClaimStore()
 
-// Все возможные сервисы (для примера, так как в сторе нет полного списка)
-const allAvailableServices = [
-  'Background Investigation',
-  'Background Investigation + Social Media',
-  'Asset Check',
-  'NetSweep',
-  'Social Media Only',
-  'Claims Investigations',
-  'Locate',
-  'Report Procurement',
-  'Activity Check',
-  'Activity Check – Field Surveillance',
-  'Surveillance - 1 Investigator',
-  'Surveillance - 2 Investigator',
-  'Remote Controlled Surveillance (RCS)',
-  'True View Package',
-  'Scene Investigation',
-  'AOE/COE Investigation',
-  'Medical Canvass with 15 locations',
-  'Dependency Check',
-  'Alive and Wellness Check',
-  'Recorded Statement',
-  'Document Delivery',
-  'Subpoena',
-  'Subrogation',
-  'SIU',
-  'SIU Compliance'
-]
+const allAvailableServices = computed(() => servicesData.map(s => s.title))
 
 const localSelectedServices = ref([])
 

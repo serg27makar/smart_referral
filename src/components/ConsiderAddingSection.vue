@@ -3,7 +3,7 @@
     <h3 class="section-title">CONSIDER ADDING</h3>
     
     <div class="cards-grid">
-      <div v-for="(card, index) in cards" :key="index" class="suggested-card">
+      <div v-for="(card, index) in claimStore.claim.suggestedServices" :key="index" class="suggested-card">
         <button class="delete-btn" @click="removeCard(index)">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -20,28 +20,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { useClaimStore } from '@/stores/claim'
 
-const cards = ref([
-  {
-    title: 'Scene Investigation',
-    description: 'On-site inspection and documentation of the reported incident location.',
-    extra: 'Ordered in 41% of similar claims.'
-  },
-  {
-    title: 'Witness Canvass & Interviews',
-    description: 'Identify and interview potential witnesses near the incident location.',
-    extra: '58% of cases resolved 20% faster.'
-  },
-  {
-    title: 'Sub Rosa Video Surveillance',
-    description: 'Extended covert video surveillance over multiple days.',
-    extra: 'Ordered in 52% of high-reserve WC claims.'
-  }
-])
+const claimStore = useClaimStore()
 
 const removeCard = (index) => {
-  cards.value.splice(index, 1)
+  claimStore.claim.suggestedServices.splice(index, 1)
 }
 </script>
 
