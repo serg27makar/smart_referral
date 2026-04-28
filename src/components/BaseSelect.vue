@@ -81,7 +81,7 @@ const vOutsideClick = {
 }
 
 .select-container {
-  padding: 10px 15px;
+  padding: 5px 10px;
   border: 1px solid var(--border-color);
   border-radius: var(--border-radius);
   background-color: var(--background-color);
@@ -89,7 +89,7 @@ const vOutsideClick = {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 45px;
+  min-height: 40px;
 }
 
 .selected-value {

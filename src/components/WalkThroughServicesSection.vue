@@ -1,7 +1,7 @@
 <template>
   <BaseSection class="walkthrough-services-section">
     <div class="section-head">
-      <h1 class="step-header-title">Here's what we recommend.</h1>
+      <h1 class="page-title">Here's what we recommend.</h1>
       <p class="section-subtitle">
         Based on your claim type, jurisdiction, and lifecycle stage. You can adjust before submitting.
       </p>
@@ -60,12 +60,12 @@
       </div>
     </template>
 
-    <button class="see-all-btn" type="button" @click="showAllServices = !showAllServices">
-      {{ showAllServices ? 'Show less services ->' : 'See all services ->' }}
+    <button class="add-more-btn see-all-btn" type="button" @click="showAllServices = !showAllServices">
+      {{ showAllServices ? 'Show less services →' : 'See all services →' }}
     </button>
 
     <div class="actions">
-      <BaseButton class="build-btn" @click="emit('build')">Build My Investigation Plan -></BaseButton>
+      <BaseButton class="build-btn" @click="emit('build')">Build My Investigation Plan →</BaseButton>
       <BaseButton type="outline-primary" @click="router.push('/')">Save as Draft</BaseButton>
     </div>
   </BaseSection>
@@ -183,21 +183,12 @@ onMounted(() => {
   margin-bottom: 24px;
 }
 
-.section-title {
-  font-size: 46px;
-  line-height: 1.12;
-  color: #133b74;
-  letter-spacing: -0.01em;
-  max-width: 780px;
-  text-transform: none; /* Override global uppercase if needed, but here it looks intentional */
-  margin: 0;
-}
-
 .section-subtitle {
   margin-top: 12px;
   font-size: 16px;
   color: var(--secondary-color);
   max-width: 760px;
+  line-height: 1.5;
 }
 
 .category-block {
@@ -217,13 +208,11 @@ onMounted(() => {
 }
 
 .see-all-btn {
+  display: block !important;
   margin-top: 8px;
   width: 100%;
   border: none;
   background: transparent;
-  color: #cda349;
-  font-weight: 700;
-  font-size: 16px;
   cursor: pointer;
   padding: 8px 0;
 }
@@ -240,11 +229,6 @@ onMounted(() => {
   width: 100%;
   min-height: 52px;
   font-weight: 700;
-}
-
-.draft-btn {
-  border-color: #d5c59e;
-  color: #cda349;
 }
 
 @media (max-width: 768px) {

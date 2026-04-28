@@ -13,7 +13,7 @@
     <EstimatedInvestmentSection />
 
     <div class="action-buttons">
-      <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
+      <BaseButton class="draft-btn" type="outline-primary" @click="router.push('/')">Save as Draft</BaseButton>
       <BaseButton class="submit-plan-btn" @click="$emit('submit')">Submit this plan</BaseButton>
     </div>
   </div>

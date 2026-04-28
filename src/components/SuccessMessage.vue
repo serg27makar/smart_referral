@@ -62,9 +62,9 @@ const router = useRouter()
   border-radius: 999px;
   display: grid;
   place-items: center;
-  color: #c5a24a;
-  background: #fff9e8;
-  border: 1px solid #f0e1b3;
+  color: var(--secondary-color);
+  background: var(--background-table-color);
+  border: 1px solid var(--border-color);
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
@@ -113,7 +113,7 @@ const router = useRouter()
   font-size: 32px;
   line-height: 1.1;
   font-weight: 700;
-  color: #c5a24a;
+  color: var(--hover-text-color);
   letter-spacing: 0.01em;
 }
 

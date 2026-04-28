@@ -9,10 +9,12 @@
         </div>
       </div>
 
-      <h1 class="page-title">Smart Referral</h1>
-      <p class="page-subtitle">
-        Intelligent investigation intake for claims professionals
-      </p>
+      <div>
+        <h1 class="page-title">Smart Referral</h1>
+        <p class="page-subtitle">
+          Intelligent investigation intake for claims professionals
+        </p>
+      </div>
 
       <div class="login-form">
         <div class="input-wrap">
@@ -60,11 +62,13 @@ const handleLogin = () => {
   padding: 16px;
   min-height: 100vh;
   box-sizing: border-box;
+  width: 100%;
+  background: var(--root-background-color);
 }
 
 .login-card {
   width: 100%;
-  max-width: 400px;
+  max-width: 470px;
   border-radius: 28px;
   cursor: default !important;
   padding: 1.2rem;
@@ -93,23 +97,15 @@ const handleLogin = () => {
 }
 
 .brand-title {
-  font-size: 26px;
+  font-size: 14px;
   font-weight: 700;
-  color: #133b74;
+  color: var(--text-color);
 }
 
 .brand-subtitle {
   font-size: 14px;
   font-weight: 600;
-  color: #133b74;
-}
-
-.page-title {
-  text-align: center;
-  line-height: 1.05;
-  font-weight: 700;
-  color: #0b2f63;
-  margin-bottom: 14px;
+  color: var(--text-color);
 }
 
 .page-subtitle {
@@ -120,11 +116,13 @@ const handleLogin = () => {
 }
 
 .login-form {
-  max-width: 360px;
+  padding-top: 1rem;
+  max-width: 460px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 18px;
+  width: 100%;
 }
 
 .input-wrap {
@@ -136,10 +134,11 @@ const handleLogin = () => {
   font-weight: 500;
   color: var(--text-color);
   box-sizing: border-box;
+  width: 100%;
 }
 
 .page-footer {
-  margin-top: 26px;
+  margin-top: 16px;
   text-align: center;
   color: var(--secondary-color);
   font-size: 16px;
@@ -149,10 +148,6 @@ const handleLogin = () => {
   .login-card {
     border-radius: 20px;
     padding: 1rem;
-  }
-
-  .page-title {
-    font-size: 22px;
   }
 
   .brand-title {

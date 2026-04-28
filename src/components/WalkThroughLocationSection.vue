@@ -1,7 +1,7 @@
 ﻿<template>
   <BaseSection class="walkthrough-location-section">
     <div class="section-head">
-      <h1 class="step-header-title">Where is the claim located?</h1>
+      <h1 class="page-title">Where is the claim located?</h1>
       <p class="section-subtitle">
         Investigation rules and available services vary significantly by state and county.
       </p>
@@ -9,7 +9,6 @@
 
     <div class="jurisdiction-block">
       <div class="jurisdiction-label">
-        <span class="label-dot"></span>
         <span>JURISDICTION</span>
       </div>
 
@@ -90,45 +89,30 @@ const canContinue = computed(() => Boolean(claimStore.claim.state && claimStore.
   margin-bottom: 24px;
 }
 
-.section-title {
-  font-size: 46px;
-  line-height: 1.12;
-  color: #133b74;
-  letter-spacing: -0.01em;
-  max-width: 780px;
-}
-
 .section-subtitle {
   margin-top: 12px;
   font-size: 16px;
   color: var(--secondary-color);
   max-width: 740px;
+  line-height: 1.5;
 }
 
 .jurisdiction-block {
   border: 1px solid var(--background-hover-color);
   border-radius: 14px;
   padding: 18px;
-  background: #fcfbf7;
+  background-color: var(--background-table-color);
 }
 
 .jurisdiction-label {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: 0.06em;
   font-weight: 700;
   color: var(--secondary-color);
   margin-bottom: 12px;
-}
-
-.label-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #efe8d7;
-  border: 1px solid #d5c59e;
 }
 
 .field {
@@ -152,20 +136,15 @@ const canContinue = computed(() => Boolean(claimStore.claim.state && claimStore.
   gap: 6px;
 }
 
-.field-mark {
-  color: #cda349;
-  line-height: 1;
-}
 
 .field :deep(.select-container) {
-  min-height: 52px;
-  border-color: #d5c59e;
+  min-height: 44px;
+  border-color: var(--border-color);
 }
 
 .field :deep(.selected-value) {
   font-size: 15px;
-  font-weight: 600;
-  color: #133b74;
+  color: var(--text-color);
 }
 
 .continue-btn {

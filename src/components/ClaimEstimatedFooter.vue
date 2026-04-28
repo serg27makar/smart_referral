@@ -17,7 +17,7 @@
       </div>
 
       <div class="actions-block">
-        <BaseButton class="draft-btn" outline @click="router.push('/')">Save as Draft</BaseButton>
+        <BaseButton class="draft-btn" type="outline-primary" @click="router.push('/')">Save as Draft</BaseButton>
         <BaseButton type="primary" @click="emit('submit')">
           Submit Plan →
         </BaseButton>

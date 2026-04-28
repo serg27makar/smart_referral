@@ -142,17 +142,6 @@ const save = () => {
   overflow-y: auto;
 }
 
-.info-banner.compact {
-  margin-bottom: 24px;
-  padding: 12px 16px;
-  background-color: #efe8d7;
-  border: 1px solid #d5c59e;
-  border-radius: 8px;
-  display: flex;
-  gap: 12px;
-  align-items: flex-start;
-}
-
 .banner-icon {
   background: #cda349;
   color: white;

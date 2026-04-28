@@ -1,7 +1,7 @@
 ﻿<template>
   <BaseSection class="walkthrough-claim-type-section">
     <div class="section-head">
-      <h1 class="step-header-title">What type of claim are you investigating?</h1>
+      <h1 class="page-title">What type of claim are you investigating?</h1>
       <p class="section-subtitle">
         This helps us recommend the right investigative services for your specific situation.
       </p>
@@ -68,18 +68,11 @@ const selectClaimType = (type) => {
   margin-bottom: 24px;
 }
 
-.section-title {
-  font-size: 46px;
-  line-height: 1.12;
-  color: #133b74;
-  letter-spacing: -0.01em;
-  max-width: 780px;
-}
-
 .section-subtitle {
   margin-top: 12px;
   font-size: 16px;
   color: var(--secondary-color);
+  line-height: 1.5;
 }
 
 .claim-grid {
@@ -104,9 +97,9 @@ const selectClaimType = (type) => {
 }
 
 .claim-title {
-  font-size: 26px;
+  font-size: 18px;
   line-height: 1.08;
-  color: #133b74;
+  color: #185aba;
   margin: 0;
 }
 

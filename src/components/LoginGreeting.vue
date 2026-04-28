@@ -2,8 +2,8 @@
   <transition name="fade-overlay" @after-leave="afterLeave">
     <div v-if="visible" class="greeting-overlay">
       <div class="greeting-content">
-        <h1 class="welcome-text">Welcome back, {{ claimStore.claim.requestorName }}</h1>
-        <p class="client-text">{{ claimStore.claim.clientName + ", " + claimStore.claim.typeOfClaim + " Desk" }}</p>
+        <h1 class="page-title">Welcome back, Joe Anderson</h1>
+        <p class="page-subtitle">Advantage Investigate, Workers Comp Desk</p>
       </div>
     </div>
   </transition>
@@ -36,7 +36,7 @@ const afterLeave = () => {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: var(--background-color);
+  background: var(--root-background-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,7 +52,7 @@ const afterLeave = () => {
 .welcome-text {
   font-size: 2.5rem;
   font-weight: 700;
-  color: #133b74;
+  color: #133bbb;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);

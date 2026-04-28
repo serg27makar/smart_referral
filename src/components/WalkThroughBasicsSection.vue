@@ -1,7 +1,7 @@
 <template>
   <BaseSection class="walkthrough-basics-section">
     <div class="section-head">
-      <h1 class="step-header-title">Let's start with the basics.</h1>
+      <h1 class="page-title">Let's start with the basics.</h1>
       <p class="step-header-subtitle">
         This helps us match your claim to the right investigative services and configure the
         experience for your organization.
@@ -43,7 +43,7 @@
       </div>
     </div>
 
-    <BaseButton class="continue-btn" @click="$emit('continue')">This looks right - continue</BaseButton>
+    <BaseButton class="continue-btn" @click="$emit('continue')">This looks right - continue →</BaseButton>
   </BaseSection>
 </template>
 
@@ -100,10 +100,7 @@ const fullName = computed({
   gap: 6px;
 }
 
-.field-mark {
-  color: #cda349;
-  line-height: 1;
-}
+
 
 .field-help {
   font-size: 13px;

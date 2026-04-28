@@ -164,7 +164,7 @@ defineEmits(['toggle-theme'])
 .theme-toggle {
   background: none;
   border: none;
-  font-size: 22px;
+  font-size: 24px;
   cursor: pointer;
   padding: 4px;
   border-radius: 50%;

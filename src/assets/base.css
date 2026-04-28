@@ -91,7 +91,7 @@ h3 {
 
 /* Common Layout & Components */
 .page-container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -246,7 +246,7 @@ h3 {
   color: #185bbb;
   margin: 0;
   font-weight: 700;
-  padding: 0.5rem 0;
+  padding: 0.8rem 0 0.5rem 0;
 }
 
 .service-card-unified .card-description {
@@ -259,12 +259,12 @@ h3 {
 
 .service-card-unified .selected-badge {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  top: 7px;
+  right: 7px;
   background-color: var(--my-primary-color);
   color: white;
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -305,4 +305,26 @@ h3 {
   border: 1px solid var(--border-color);
   border-radius: 999px;
   background: var(--background-color);
+}
+
+.field-mark {
+  color: var(--secondary-color);
+  line-height: 1;
+}
+
+.add-more-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--my-primary-color);
+  background: none;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.add-more-btn:hover {
+  opacity: 0.8;
 }

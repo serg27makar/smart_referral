@@ -122,23 +122,6 @@ const removeService = (title) => {
   letter-spacing: 0.5px;
 }
 
-.add-more-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--my-primary-color);
-  background: none;
-  border: none;
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.add-more-btn:hover {
-  opacity: 0.8;
-}
-
 .info-blocks {
   display: flex;
   flex-direction: column;
@@ -232,11 +215,11 @@ const removeService = (title) => {
 }
 
 .index-badge {
-  background: var(--background-hover-color);
+  background: var(--background-table-color);
   color: var(--secondary-color);
   width: 24px;
   height: 24px;
-  border-radius: 4px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;

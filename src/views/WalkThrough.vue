@@ -24,28 +24,52 @@
           <span class="chip-step">1</span>
           <span class="chip-tag">YOU</span>
           <span class="chip-text">{{ claimStore.claim.requestorName }} - {{ claimStore.claim.clientName }}</span>
-          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+          <button class="chip-edit" type="button" @click="currentStep = 1">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Edit</span>
+          </button>
         </div>
 
         <div v-if="currentStep >= 3" class="profile-chip">
           <span class="chip-step">2</span>
           <span class="chip-tag">CLAIM TYPE</span>
           <span class="chip-text">{{ claimStore.claim.typeOfClaim }}</span>
-          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+          <button class="chip-edit" type="button" @click="currentStep = 1">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Edit</span>
+          </button>
         </div>
 
         <div v-if="currentStep >= 4" class="profile-chip">
           <span class="chip-step">3</span>
           <span class="chip-tag">JURISDICTION</span>
           <span class="chip-text">{{ jurisdictionSummary }}</span>
-          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+          <button class="chip-edit" type="button" @click="currentStep = 1">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Edit</span>
+          </button>
         </div>
 
         <div v-if="currentStep >= 5" class="profile-chip">
           <span class="chip-step">4</span>
           <span class="chip-tag">DATE OF LOSS</span>
           <span class="chip-text">{{ lossDateSummary }}</span>
-          <button class="chip-edit" type="button" @click="currentStep = 1">Edit</button>
+          <button class="chip-edit" type="button" @click="currentStep = 1">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+            <span>Edit</span>
+          </button>
         </div>
       </div>
 
@@ -206,8 +230,8 @@ const getLifecycleLabel = (date) => {
   justify-content: center;
   font-size: 13px;
   font-weight: 700;
-  color: #6c5a2c;
-  background: #efe8d7;
+  color: var(--secondary-color);
+  background-color: var(--background-table-color);
 }
 
 .chip-tag {
@@ -219,7 +243,7 @@ const getLifecycleLabel = (date) => {
 
 .chip-text {
   flex: 1;
-  color: #133b74;
+  color: var(--text-color);
   font-weight: 600;
   font-size: 15px;
 }
@@ -227,10 +251,15 @@ const getLifecycleLabel = (date) => {
 .chip-edit {
   border: none;
   background: transparent;
-  color: #cda349;
-  cursor: pointer;
-  font-weight: 700;
+  color: var(--my-primary-color);
+  gap: 6px;
   font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
 }
 
 .info-box {
@@ -252,7 +281,7 @@ const getLifecycleLabel = (date) => {
 .info-box .banner-close {
   border: none;
   background: transparent;
-  color: #9b8b61;
+  color: var(--secondary-color);
   font-size: 20px;
   line-height: 1;
   cursor: pointer;

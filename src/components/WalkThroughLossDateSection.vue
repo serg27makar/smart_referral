@@ -1,7 +1,7 @@
 <template>
   <BaseSection class="walkthrough-loss-date-section">
     <div class="section-head">
-      <h1 class="step-header-title">When did the loss occur?</h1>
+      <h1 class="page-title">When did the loss occur?</h1>
       <p class="section-subtitle">
         The date of loss determines where this claim sits in its lifecycle - which changes what we recommend.
       </p>
@@ -23,7 +23,7 @@
     </div>
 
     <BaseButton class="continue-btn" :disabled="!claimStore.claim.dateOfInjury" @click="$emit('continue')">
-      Continue ->
+      Continue →
     </BaseButton>
   </BaseSection>
 </template>
@@ -84,19 +84,12 @@ const lifecycleLabel = computed(() => {
   margin-bottom: 24px;
 }
 
-.section-title {
-  font-size: 46px;
-  line-height: 1.12;
-  color: #133b74;
-  letter-spacing: -0.01em;
-  max-width: 780px;
-}
-
 .section-subtitle {
   margin-top: 12px;
   font-size: 16px;
   color: var(--secondary-color);
   max-width: 760px;
+  line-height: 1.5;
 }
 
 .field {
@@ -115,38 +108,10 @@ const lifecycleLabel = computed(() => {
   gap: 6px;
 }
 
-.field-mark {
-  color: #cda349;
-  line-height: 1;
-}
-
 .field :deep(.base-input) {
-  min-height: 52px;
-  border-color: #d5c59e;
-  color: #133b74;
-  font-weight: 600;
-}
-
-.insight-box {
-  margin-top: 14px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 16px;
-  background: #efe8d7;
-  border: 1px solid #d5c59e;
-  border-radius: 12px;
-}
-
-.insight-icon {
-  color: #cda349;
-  font-size: 14px;
-}
-
-.insight-text {
-  font-size: 15px;
-  color: #665939;
-  font-weight: 500;
+  min-height: 44px;
+  border-color: var(--border-color);
+  color: var(--text-color);
 }
 
 .continue-btn {
