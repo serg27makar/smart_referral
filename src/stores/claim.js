@@ -7,7 +7,7 @@ export const useClaimStore = defineStore('claim', () => {
 
   const claim = ref({
     clientName: '',
-    requestorName: '',
+    requestorName: 'Guest User',
     email: '',
     phone: '',
     ccEmails: '',

@@ -16,8 +16,8 @@
     
     <div class="header-right">
       <div class="user-profile">
-        <div class="user-avatar">JA</div>
-        <span class="user-name">Joe Anderson</span>
+        <div class="user-avatar">{{ initials }}</div>
+        <span class="user-name">{{ requestorName }}</span>
       </div>
       <button class="theme-toggle" @click="$emit('toggle-theme')">
         <span v-if="isDark">☀️</span>
@@ -28,10 +28,23 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
+import { useClaimStore } from '@/stores/claim'
+
 defineProps({
   isDark: Boolean
 })
 defineEmits(['toggle-theme'])
+
+const claimStore = useClaimStore()
+const requestorName = computed(() => claimStore.claim.requestorName)
+
+const initials = computed(() => {
+  const name = requestorName.value
+  const parts = name.trim().split(/\s+/)
+  if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase()
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+})
 </script>
 
 <style scoped>
