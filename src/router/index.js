@@ -6,6 +6,11 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 import NotSure from "@/views/NotSure.vue";
 import WalkThrough from "@/views/WalkThrough.vue";
 import KnowWhatNeed from "@/views/KnowWhatNeed.vue";
+import ProfileView from '@/views/ProfileView.vue'
+import SmartHubView from '@/views/SmartHubView.vue'
+import SmartReferralView from '@/views/SmartReferralView.vue'
+import DashboardView from '@/views/DashboardView.vue'
+import LogicDataView from '@/views/LogicDataView.vue'
 
 const routes = [
   {
@@ -16,6 +21,31 @@ const routes = [
         path: '',
         name: 'home',
         component: HomeView
+      },
+      {
+        path: 'profile',
+        name: 'profile',
+        component: ProfileView
+      },
+      {
+        path: 'smart-hub',
+        name: 'smart-hub',
+        component: SmartHubView
+      },
+      {
+        path: 'smart-referral-page',
+        name: 'smart-referral-page',
+        component: SmartReferralView
+      },
+      {
+        path: 'dashboard',
+        name: 'dashboard',
+        component: DashboardView
+      },
+      {
+        path: 'logic-data',
+        name: 'logic-data',
+        component: LogicDataView
       },
       {
         path: 'not-sure',

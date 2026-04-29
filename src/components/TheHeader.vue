@@ -11,13 +11,28 @@
     </div>
     
     <div class="header-center">
-      <h4 class="section-label">Smart Referral</h4>
+      <h4 class="section-label">{{ activeLabel }}</h4>
     </div>
     
     <div class="header-right">
-      <div class="user-profile">
-        <div class="user-avatar">{{ initials }}</div>
-        <span class="user-name">{{ requestorName }}</span>
+      <div class="user-profile-container">
+        <div class="user-profile" @click="toggleMenu" v-click-outside="closeMenu">
+          <div class="user-avatar">{{ initials }}</div>
+          <span class="user-name">{{ requestorName }}</span>
+          <span class="dropdown-arrow" :class="{ 'arrow-up': isMenuOpen }">▼</span>
+        </div>
+
+        <transition name="fade">
+          <div v-if="isMenuOpen" class="user-menu">
+            <div class="menu-item" @click="navigateTo('profile')">My Profile</div>
+            <div class="menu-item" @click="navigateTo('smart-hub')">Smart Hub</div>
+            <div class="menu-item" @click="navigateTo('home')">Smart Referral</div>
+            <div class="menu-item" @click="navigateTo('dashboard')">My Dashboard</div>
+            <div class="menu-item" @click="navigateTo('logic-data')">Logic & Data</div>
+            <div class="menu-divider"></div>
+            <div class="menu-item logout" @click="handleSignOut">Sign out</div>
+          </div>
+        </transition>
       </div>
       <button class="theme-toggle" @click="$emit('toggle-theme')">
         <span v-if="isDark">☀️</span>
@@ -28,7 +43,8 @@
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import { useClaimStore } from '@/stores/claim'
 
 defineProps({
@@ -36,8 +52,57 @@ defineProps({
 })
 defineEmits(['toggle-theme'])
 
+const router = useRouter()
+const route = useRoute()
 const claimStore = useClaimStore()
 const requestorName = computed(() => claimStore.claim.requestorName)
+
+const activeLabel = computed(() => {
+  const routeLabels = {
+    'profile': 'My Profile',
+    'smart-hub': 'Smart Hub',
+    'smart-referral-page': 'Smart Referral',
+    'dashboard': 'My Dashboard',
+    'logic-data': 'Logic & Data'
+  }
+  return routeLabels[route.name] || 'Smart Referral'
+})
+
+const isMenuOpen = ref(false)
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value
+}
+
+const closeMenu = () => {
+  isMenuOpen.value = false
+}
+
+const vClickOutside = {
+  mounted(el, binding) {
+    el.clickOutsideEvent = (event) => {
+      if (!(el === event.target || el.contains(event.target))) {
+        binding.value(event)
+      }
+    }
+    document.addEventListener('click', el.clickOutsideEvent)
+  },
+  unmounted(el) {
+    document.removeEventListener('click', el.clickOutsideEvent)
+  }
+}
+
+const navigateTo = (routeName) => {
+  router.push({ name: routeName })
+  closeMenu()
+}
+
+const handleSignOut = () => {
+  claimStore.resetStore()
+  localStorage.clear()
+  router.push({ name: 'login' })
+  closeMenu()
+}
 
 const initials = computed(() => {
   const name = requestorName.value
@@ -146,13 +211,84 @@ const initials = computed(() => {
   }
 }
 
+.user-profile-container {
+  position: relative;
+}
+
 .user-profile {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: var(--background-color);
   padding: 6px 12px;
   border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border: 1px solid var(--border-color);
+}
+
+.user-profile:hover {
+  background-color: var(--background-hover-color);
+}
+
+.dropdown-arrow {
+  font-size: 10px;
+  color: var(--text-color);
+  transition: transform 0.2s;
+}
+
+.arrow-up {
+  transform: rotate(180deg);
+}
+
+.user-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 11rem;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+.menu-item {
+  padding: 12px 16px;
+  font-size: 14px;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-item:hover {
+  background-color: var(--background-hover-color);
+}
+
+.menu-divider {
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 4px 0;
+}
+
+.menu-item.logout {
+  color: #e74c3c;
+}
+
+.menu-item.logout:hover {
+  background-color: var(--background-hover-color);
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 
 .user-avatar {

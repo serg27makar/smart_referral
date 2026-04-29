@@ -57,6 +57,41 @@ export const useClaimStore = defineStore('claim', () => {
     estimatedRangeText,
     updateClaim(data) {
       claim.value = { ...claim.value, ...data }
+    },
+    resetStore() {
+      claim.value = {
+        clientName: '',
+        requestorName: 'Guest User',
+        email: '',
+        phone: '',
+        ccEmails: '',
+
+        claimFileNumber: '',
+        claimType: '',
+        claimant: '',
+        insured: '',
+        claimHandler: '',
+        insuredRepresentative: '',
+        insuredContactInformation: '',
+        isContactMyAccountManager: false,
+        isPreferPhysicalMedia: false,
+        typeOfClaim: '',
+
+        state: '',
+        county: '',
+
+        dateOfInjury: '',
+        descriptionOfInjury: '',
+
+        claimStage: '',
+        redFlags: [],
+
+        services: [],
+        suggestedServices: [],
+        budgetHours: 0,
+        budget: 0,
+        dueDate: ''
+      }
     }
   }
 })
